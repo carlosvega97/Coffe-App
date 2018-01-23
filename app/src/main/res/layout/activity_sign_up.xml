@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b89471"
+    tools:context="com.example.javie.coffeapp.SignUpActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="208dp"
+        android:layout_height="85dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="32dp"
+        android:fontFamily="cursive"
+        android:text="@string/COFFe"
+        android:textColor="@android:color/white"
+        android:textSize="75sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="2dp"
+        tools:targetApi="jelly_bean" />
+
+    <LinearLayout
+        android:layout_width="316dp"
+        android:layout_height="388dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.738">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/campo_etiqueta_flotante_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:hint="@string/Name"
+                android:singleLine="true"
+                android:textColorHint="@android:color/background_light"
+                android:textColorLink="@android:color/background_light"
+                tools:targetApi="jelly_bean" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/campo_etiqueta_flotante_surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:hint="@string/Surname"
+                android:singleLine="true"
+                android:textColorHint="@android:color/background_light"
+                android:textColorLink="@android:color/background_light"
+                tools:targetApi="jelly_bean" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/campo_etiqueta_flotante_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:hint="@string/Email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColorHint="@android:color/background_light"
+                android:textColorLink="@android:color/background_light"
+                tools:targetApi="jelly_bean" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/campo_etiqueta_flotante_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:hint="@string/User"
+                android:singleLine="true"
+                android:textColorHint="@android:color/background_light"
+                android:textColorLink="@android:color/background_light"
+                tools:targetApi="jelly_bean" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/background_light">
+
+            <EditText
+                android:id="@+id/campo_etiqueta_flotante_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:hint="@string/Pass"
+                android:singleLine="true"
+                android:textColorHint="@android:color/background_light"
+                android:textColorLink="@android:color/background_light"
+                tools:targetApi="jelly_bean" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#FFFF4081"
+            android:fontFamily="casual"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/Register"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.697"
+            tools:ignore="MissingConstraints"
+            tools:targetApi="jelly_bean" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
+
