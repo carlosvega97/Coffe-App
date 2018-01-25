@@ -5,20 +5,20 @@
     android:id="@+id/visible"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5e2e7d"
+    android:background="#FFA67F58"
     tools:context="com.example.javie.coffeapp.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="613dp"
+        android:layout_height="602dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:contentDescription="@string/purple_background_color"
         android:scaleType="fitStart"
-        android:src="@drawable/bckrana"
+        android:src="@drawable/fcb"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteX="-222dp"
         tools:layout_editor_absoluteY="0dp" />
 
 
@@ -29,7 +29,7 @@
         android:layout_marginBottom="404dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="cursive"
         android:text="@string/COFFe"
         android:textColor="@android:color/white"
@@ -45,68 +45,91 @@
 
     <LinearLayout
         android:id="@+id/masked"
-        android:layout_width="match_parent"
-        android:layout_height="178dp"
+        android:layout_width="338dp"
+        android:layout_height="221dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="160dp"
-        android:background="#ffffff"
+        android:background="@android:color/transparent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086">
+        app:layout_constraintVertical_bias="0.229">
 
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/black">
+            android:layout_marginTop="5dp"
+            android:alpha="0.6"
+            android:background="@android:color/background_light"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/campo_etiqueta_flotante_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:hint="@string/User"
-                android:singleLine="true"
-                android:textColorHint="@android:color/background_light"
-                android:textColorLink="@android:color/background_light"
-                tools:targetApi="jelly_bean" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@android:color/black">
-
-            <EditText
-                android:id="@+id/campo_etiqueta_flotante_pass"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.5"
-                android:fontFamily="casual"
-                android:hint="@string/Pass"
-                android:singleLine="true"
-                android:textColor="@android:color/background_dark"
-                tools:targetApi="jelly_bean" />
-        </android.support.design.widget.TextInputLayout>
+                android:textColorHint="@android:color/background_dark">
 
-        <Button
+                <EditText
+                    android:id="@+id/campo_etiqueta_flotante_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="casual"
+                    android:hint="@string/User"
+                    android:singleLine="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textColorHint="@android:color/background_dark"
+                    android:textColorLink="@android:color/background_dark"
+                    android:textSize="24sp"
+                    tools:targetApi="jelly_bean" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@android:color/black">
+
+                <EditText
+                    android:id="@+id/campo_etiqueta_flotante_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="casual"
+                    android:hint="@string/Pass"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textColorHint="@android:color/background_dark"
+                    android:textColorLink="@android:color/background_dark"
+                    android:textSize="24sp"
+                    tools:targetApi="jelly_bean" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#FFFF4081"
-            android:fontFamily="casual"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="@string/Register"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@android:color/white"
-            tools:targetApi="jelly_bean" />
+            android:layout_height="66dp"
+            android:alpha="0.99"
+            android:background="@color/colorAccent"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="73dp"
+                android:background="#FFFF4081"
+                android:fontFamily="casual"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="@string/login"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                tools:targetApi="jelly_bean" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -137,13 +160,13 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="3dp"
         android:fontFamily="casual"
         android:text="@string/community_of_favors"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView"
         app:layout_constraintVertical_bias="0.125"

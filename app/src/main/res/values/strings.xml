@@ -11,5 +11,8 @@
     <string name="CPassword">Confirm Password</string>
     <string name="purple_background_color">Purple background color</string>
     <string name="community_of_favors">Community Of Favors</string>
+    <string name="login">Login</string>
+    <string name="date">Date</string>
+    <string name="confirm_password">Confirm Password</string>
 
 </resources>

@@ -26,11 +26,12 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="165dp"
+        android:layout_marginStart="165dp"
         android:layout_marginTop="225dp"
         android:indeterminateTint="@android:color/background_light"
-        android:progressBackgroundTint="@android:color/background_light"
+        android:progressBackgroundTint="@android:color/holo_blue_bright"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="165dp" tools:targetApi="lollipop"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop" />
 
 </android.support.constraint.ConstraintLayout>
