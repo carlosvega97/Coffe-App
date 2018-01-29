@@ -14,5 +14,7 @@
     <string name="login">Login</string>
     <string name="date">Date</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="add_new_favors">ADD NEW FAVORS</string>
+    <string name="favors_to_do">FAVORS TO DO</string>
 
 </resources>

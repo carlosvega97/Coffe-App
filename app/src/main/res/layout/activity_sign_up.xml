@@ -4,21 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFA67F58"
+    android:background="@drawable/degradado"
     tools:context="com.example.javie.coffeapp.SignUpActivity">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="613dp"
-        android:layout_height="602dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/purple_background_color"
-        android:scaleType="fitStart"
-        android:src="@drawable/fcb"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-222dp"
-        tools:layout_editor_absoluteY="0dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -35,11 +22,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
-        tools:targetApi="jelly_bean" />
+        tools:targetApi="jelly_bean"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="32dp" />
 
     <LinearLayout
-        android:layout_width="316dp"
-        android:layout_height="388dp"
+        android:layout_width="337dp"
+        android:layout_height="324dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -47,26 +36,27 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.738">
+        app:layout_constraintVertical_bias="0.654">
 
         <LinearLayout
+            android:id="@+id/linearly1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/background_light"
-            android:orientation="vertical"
-            android:alpha="0.6">
+            android:layout_height="250dp"
+            android:background="@android:color/transparent"
+            android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="80dp"
                 android:textColorHint="@android:color/black">
 
                 <EditText
-                    android:id="@+id/campo_etiqueta_flotante_name"
+                    android:id="@+id/et_user"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:fontFamily="casual"
                     android:hint="@string/User"
                     android:singleLine="true"
@@ -78,13 +68,13 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="82dp"
                 android:textColorHint="@android:color/black">
 
                 <EditText
-                    android:id="@+id/campo_etiqueta_flotante_email"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:fontFamily="casual"
                     android:hint="@string/Email"
                     android:inputType="textEmailAddress"
@@ -97,16 +87,16 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="85dp"
                 android:textColorHint="@android:color/black">
 
                 <EditText
-                    android:id="@+id/campo_etiqueta_flotante_date"
+                    android:id="@+id/et_pass"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:fontFamily="casual"
-                    android:hint="@string/date"
-                    android:inputType="date"
+                    android:hint="@string/Pass"
+                    android:inputType="textPassword"
                     android:singleLine="true"
                     android:textColor="@android:color/black"
                     android:textColorHint="@android:color/black"
@@ -114,61 +104,24 @@
                     tools:targetApi="jelly_bean" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@android:color/black">
-
-                <EditText
-                    android:id="@+id/campo_etiqueta_flotante_user"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:hint="@string/Pass"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/background_light"
-                    android:textColorLink="@android:color/background_light"
-                    tools:targetApi="jelly_bean" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColorHint="@android:color/black">
-
-                <EditText
-                    android:id="@+id/campo_etiqueta_flotante_pass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:hint="@string/confirm_password"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/background_light"
-                    android:textColorLink="@android:color/background_light"
-                    tools:targetApi="jelly_bean" />
-            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearly2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="75dp"
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/btn_register"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:background="#FFFF4081"
+                android:background="@color/colorAccent"
                 android:fontFamily="casual"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
                 android:text="@string/Register"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@android:color/white"

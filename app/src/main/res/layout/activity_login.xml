@@ -5,41 +5,24 @@
     android:id="@+id/visible"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFA67F58"
+    android:background="@drawable/degradado"
     tools:context="com.example.javie.coffeapp.LoginActivity">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="613dp"
-        android:layout_height="602dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/purple_background_color"
-        android:scaleType="fitStart"
-        android:src="@drawable/fcb"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-222dp"
-        tools:layout_editor_absoluteY="0dp" />
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="185dp"
-        android:layout_height="84dp"
-        android:layout_marginBottom="404dp"
+        android:layout_width="250dp"
+        android:layout_height="159dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
         android:fontFamily="cursive"
         android:text="@string/COFFe"
         android:textColor="@android:color/white"
-        android:textSize="64sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="100sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints"
         tools:targetApi="jelly_bean" />
 
@@ -48,25 +31,24 @@
         android:layout_width="338dp"
         android:layout_height="221dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229">
+        app:layout_constraintVertical_bias="0.609">
 
 
         <LinearLayout
+            android:id="@+id/lnly1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:alpha="0.6"
-            android:background="@android:color/background_light"
+            android:background="@android:color/transparent"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
@@ -79,12 +61,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="casual"
-                    android:hint="@string/User"
+                    android:hint="@string/Email"
+                    android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textColor="@android:color/background_dark"
                     android:textColorHint="@android:color/background_dark"
                     android:textColorLink="@android:color/background_dark"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     tools:targetApi="jelly_bean" />
             </android.support.design.widget.TextInputLayout>
 
@@ -104,7 +87,7 @@
                     android:textColor="@android:color/background_dark"
                     android:textColorHint="@android:color/background_dark"
                     android:textColorLink="@android:color/background_dark"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     tools:targetApi="jelly_bean" />
             </android.support.design.widget.TextInputLayout>
 
@@ -118,16 +101,17 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="73dp"
-                android:background="#FFFF4081"
+                android:background="?attr/colorAccent"
                 android:fontFamily="casual"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/login"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@android:color/white"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 tools:targetApi="jelly_bean" />
         </LinearLayout>
 
@@ -157,19 +141,16 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="120dp"
         android:fontFamily="casual"
         android:text="@string/community_of_favors"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.125"
         tools:ignore="MissingConstraints"
         tools:targetApi="jelly_bean" />
 

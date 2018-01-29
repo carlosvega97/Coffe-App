@@ -27,7 +27,8 @@
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".LoginActivity" />
-        <activity android:name=".Splash_Screen"></activity>
+        <activity android:name=".Splash_Screen" />
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
 </manifest>
