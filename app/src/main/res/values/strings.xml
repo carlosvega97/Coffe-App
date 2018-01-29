@@ -16,5 +16,11 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="add_new_favors">ADD NEW FAVORS</string>
     <string name="favors_to_do">FAVORS TO DO</string>
+    <string name="title_activity_home2">HomeActivity2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 </resources>
