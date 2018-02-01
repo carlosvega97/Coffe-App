@@ -7,31 +7,4 @@
     android:background="#aa7f55"
     tools:context="com.example.javie.coffeapp.MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/armata"
-        android:text="@string/COFFe"
-        android:textColor="@android:color/white"
-        android:textSize="64sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:fontFamily="@font/pacifico"
-        tools:targetApi="jelly_bean" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="225dp"
-        android:indeterminateTint="@android:color/background_light"
-        android:progressBackgroundTint="@android:color/holo_blue_bright"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:targetApi="lollipop" />
-
 </android.support.constraint.ConstraintLayout>
