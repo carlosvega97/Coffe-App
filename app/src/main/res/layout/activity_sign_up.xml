@@ -103,12 +103,13 @@
         android:id="@+id/txtvwLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="520dp"
         android:fontFamily="casual"
         android:text="@string/im_register_return_to_login"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        tools:targetApi="jelly_bean" />
 
 </RelativeLayout>

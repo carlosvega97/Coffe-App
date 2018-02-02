@@ -2,11 +2,13 @@ package com.example.javie.coffeapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -30,9 +34,13 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressDialog mProgess;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_sign_up);
 
         mAuth= FirebaseAuth.getInstance();
@@ -43,13 +51,6 @@ public class SignUpActivity extends AppCompatActivity {
         miReturnLogin = findViewById(R.id.txtvwLog);
 
         mProgess = new ProgressDialog(this);
-
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startRegister();
-            }
-        });
         miReturnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,11 +58,18 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startRegister();
+            }
+        });
+
 
     }
     private void startRegister() {
         final String name = mNameField.getText().toString().trim();
-        String email = mEmailField.getText().toString().trim();
+        final String email = mEmailField.getText().toString().trim();
         String password = mPasswordField.getText().toString().trim();
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
@@ -72,9 +80,19 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             mProgess.dismiss();
-                            if(task.isSuccessful()){
+                            if(task.isSuccessful()) {
                                 String user_id = mAuth.getCurrentUser().getUid();
-                                Toast.makeText(SignUpActivity.this, user_id, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "El usuario " + user_id + "ha sido registrado", Toast.LENGTH_SHORT).show();
+
+                                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+                                DatabaseReference currentUserDB = mDatabase.child(mAuth.getCurrentUser().getUid());
+                                currentUserDB.child("E-mail").setValue(email);
+                                currentUserDB.child("name").setValue(name);
+
+                                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }else {
+                                Toast.makeText(SignUpActivity.this,  "El email "+ email +" ya esta registrado", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

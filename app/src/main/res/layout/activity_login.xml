@@ -91,15 +91,14 @@
         android:id="@+id/signUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textvw2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textvw2"
-        android:layout_marginBottom="11dp"
         android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="520dp"
         android:fontFamily="casual"
         android:text="@string/dont_have_an_account"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        tools:targetApi="jelly_bean" />
 
     <!--android:onClick="onClick"-->
     <!--android:clickable="true"-->
