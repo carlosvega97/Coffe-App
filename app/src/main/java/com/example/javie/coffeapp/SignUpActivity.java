@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText mNameField;
     EditText mEmailField;
     EditText mPasswordField;
+    EditText mTlfField;
 
     TextView miReturnLogin;
 
@@ -49,6 +49,8 @@ public class SignUpActivity extends AppCompatActivity {
         mPasswordField = findViewById(R.id.et_pass);
         mRegisterButton = findViewById(R.id.btn_register);
         miReturnLogin = findViewById(R.id.txtvwLog);
+        mTlfField = findViewById(R.id.et_tlf);
+
 
         mProgess = new ProgressDialog(this);
         miReturnLogin.setOnClickListener(new View.OnClickListener() {

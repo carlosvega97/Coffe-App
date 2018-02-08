@@ -28,11 +28,11 @@
             android:name=".LoginActivity"
             android:parentActivityName=".LoginActivity" />
         <activity android:name=".Splash_Screen" />
-        <activity android:name=".HomeActivity" />
         <activity
-            android:name=".HomeActivity2"
-            android:label="@string/title_activity_home2"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".PerfilActivity"></activity>
     </application>
 
 </manifest>

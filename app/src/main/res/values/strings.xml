@@ -27,5 +27,13 @@
     <string name="im_register_return_to_login">Im register, return to Login</string>
     <string name="imagen_de_ss">imagen de SS</string>
     <string name="imagen_del_corazon_en_ss">imagen del corazon en SS</string>
+    <string name="dont_remember_your_password">Dont remember your Password?</string>
+    <string name="add">ADD</string>
+    <string name="favor">FAVOR</string>
+    <string name="accept">ACCEPT</string>
+    <string name="imagenaddfavor">imagenaddFavor</string>
+    <string name="imagenacceptfavor">imagenacceptFavor</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="user_name">User Name</string>
 
 </resources>

@@ -24,8 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
+        android:fontFamily="casual"
         android:text="@string/community_of_favors"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/title"
@@ -91,16 +92,32 @@
         android:id="@+id/signUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="520dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:fontFamily="casual"
         android:text="@string/dont_have_an_account"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
         tools:targetApi="jelly_bean" />
 
-    <!--android:onClick="onClick"-->
+    <TextView
+        android:id="@+id/txtRmPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="casual"
+        android:text="@string/dont_remember_your_password"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        tools:targetApi="jelly_bean" /><![CDATA[
+
+
+
+    />
+
+
+    ]]><!--android:onClick="onClick"-->
     <!--android:clickable="true"-->
 
 </RelativeLayout>

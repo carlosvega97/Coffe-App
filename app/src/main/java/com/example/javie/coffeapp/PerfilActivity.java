@@ -11,13 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class HomeActivity extends AppCompatActivity
+public class PerfilActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_perfil);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_home){
-            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+            Intent intent = new Intent(PerfilActivity.this, HomeActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_ftd) {
 
@@ -80,10 +80,10 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_mc) {
 
         } else if (id == R.id.nav_mp) {
-            Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
+            Intent intent = new Intent(PerfilActivity.this, PerfilActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_exit) {
-            Intent intent = new Intent(HomeActivity.this, Splash_Screen.class);
+            Intent intent = new Intent(PerfilActivity.this, Splash_Screen.class);
             startActivity(intent);
         }
 
@@ -92,3 +92,4 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 }
+

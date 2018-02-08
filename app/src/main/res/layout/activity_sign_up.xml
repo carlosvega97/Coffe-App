@@ -23,8 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
+        android:fontFamily="casual"
         android:text="@string/community_of_favors"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/black" tools:targetApi="jelly_bean" />
 
     <TextView
         android:id="@+id/title"
@@ -35,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="cursive"
         android:text="@string/COFFe"
-        android:textColor="@android:color/background_light"
+        android:textColor="#ff6666"
         android:textSize="72sp"
         tools:targetApi="jelly_bean" />
 
@@ -84,6 +85,14 @@
             android:textColorLink="#ff6666"
             android:textSize="24sp" />
 
+        <EditText
+            android:id="@+id/et_tlf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Tlf"
+            android:inputType="phone" />
+
 
     </LinearLayout>
 
@@ -103,13 +112,12 @@
         android:id="@+id/txtvwLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="85dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="520dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:fontFamily="casual"
         android:text="@string/im_register_return_to_login"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
         tools:targetApi="jelly_bean" />
 
 </RelativeLayout>
