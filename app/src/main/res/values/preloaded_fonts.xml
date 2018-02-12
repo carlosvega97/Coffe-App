@@ -2,6 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/armata</item>
+        <item>@font/caveat_brush</item>
         <item>@font/pacifico</item>
     </array>
 </resources>

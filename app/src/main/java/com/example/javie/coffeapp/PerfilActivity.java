@@ -10,9 +10,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class PerfilActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    TextView tvNavDrawerUser, tvNavDrawerEmail, tvPersonNameProfile, tvEmailProfile, tvPNumberProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +38,33 @@ public class PerfilActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        tvPersonNameProfile = findViewById(R.id.tvPersonNameProfile);
+        tvEmailProfile = findViewById(R.id.tvEmailProfile);
+        tvPNumberProfile = findViewById(R.id.tvPNumberProfile);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userRef=user.getUid();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        mDatabase.child(userRef).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<User> userlist=new ArrayList<User>();
+
+                User user=dataSnapshot.getValue(User.class);
+                userlist.add(user);
+
+
+                tvPersonNameProfile.setText(user.getPersonName());
+                tvEmailProfile.setText(user.getEmail());
+                tvPNumberProfile.setText(user.getPnumber());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -45,6 +81,29 @@ public class PerfilActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+        tvNavDrawerUser = findViewById(R.id.tvNavDrawerUser);
+        tvNavDrawerEmail = findViewById(R.id.tvNavDrawerEmail);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userRef=user.getUid();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        mDatabase.child(userRef).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<User> userlist=new ArrayList<User>();
+
+                User user=dataSnapshot.getValue(User.class);
+                userlist.add(user);
+
+
+                tvNavDrawerUser.setText(user.getPersonName());
+                tvNavDrawerEmail.setText(user.getEmail());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         return true;
     }
 
@@ -56,9 +115,6 @@ public class PerfilActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

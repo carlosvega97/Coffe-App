@@ -20,18 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        layout="@layout/content_perfil"
-         />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="29dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/pencilpablo" android:layout_marginStart="300dp"/>
+    <include layout="@layout/content_home" />
 
 
 </android.support.design.widget.CoordinatorLayout>

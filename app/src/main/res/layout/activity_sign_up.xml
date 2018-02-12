@@ -33,10 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="19dp"
         android:fontFamily="cursive"
         android:text="@string/COFFe"
-        android:textColor="#ff6666"
+        android:textColor="@android:color/background_light"
         android:textSize="72sp"
         tools:targetApi="jelly_bean" />
 

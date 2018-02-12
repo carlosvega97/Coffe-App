@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relLayLogin"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#009FAF"
@@ -26,7 +27,8 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="casual"
         android:text="@string/community_of_favors"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        tools:targetApi="jelly_bean" />
 
     <TextView
         android:id="@+id/title"
@@ -110,14 +112,6 @@
         android:text="@string/dont_remember_your_password"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        tools:targetApi="jelly_bean" /><![CDATA[
-
-
-
-    />
-
-
-    ]]><!--android:onClick="onClick"-->
-    <!--android:clickable="true"-->
+        tools:targetApi="jelly_bean" />
 
 </RelativeLayout>

@@ -32,7 +32,8 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
-        <activity android:name=".PerfilActivity"></activity>
+        <activity android:name=".PerfilActivity" />
+        <activity android:name=".ResetPassActivity"></activity>
     </application>
 
 </manifest>
