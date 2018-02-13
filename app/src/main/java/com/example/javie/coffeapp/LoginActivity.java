@@ -24,7 +24,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
 public class LoginActivity extends AppCompatActivity {
     protected RelativeLayout relativeLayout;
@@ -98,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.v("Login", "signInWithEmail:failure", task.getException());
                     Toast.makeText(LoginActivity.this, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
+                    Snackbar.make(relativeLayout, "Welcome" + email, Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

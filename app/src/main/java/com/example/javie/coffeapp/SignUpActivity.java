@@ -4,12 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText mEmailField;
     EditText mPasswordField;
     EditText mTlfField;
-
+    RelativeLayout relativeLayout;
     TextView miReturnLogin;
 
     Button mRegisterButton;
@@ -50,6 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         mRegisterButton = findViewById(R.id.btn_register);
         miReturnLogin = findViewById(R.id.txtvwLog);
         mTlfField = findViewById(R.id.et_tlf);
+        relativeLayout = findViewById(R.id.crtllyt);
 
 
         mProgess = new ProgressDialog(this);
@@ -85,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
                             mProgess.dismiss();
                             if(task.isSuccessful()) {
                                 String user_id = mAuth.getCurrentUser().getUid();
-                                Toast.makeText(SignUpActivity.this, "El usuario " + user_id + "ha sido registrado", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(relativeLayout, "You were successfully registered with this email: " + email, Snackbar.LENGTH_SHORT).show();
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
                                 DatabaseReference currentUserDB = mDatabase.child(mAuth.getCurrentUser().getUid());
@@ -94,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                                 startActivity(intent);
                             }else {
-                                Toast.makeText(SignUpActivity.this,  "El email "+ email +" ya esta registrado", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(relativeLayout, "         this Email:  "+ email +" is already registered", Snackbar.LENGTH_LONG).show();
                             }
                         }
                     });
