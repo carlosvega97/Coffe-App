@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:contentDescription="@string/imagen_de_chica_difuminada"
+        android:contentDescription="@string/loginCoffeeCup"
         app:srcCompat="@drawable/logocoffetazarecortado" />
 
     <TextView
@@ -24,8 +24,9 @@
         android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
         android:fontFamily="casual"
-        android:text="@string/community_of_favors"
-        android:textColor="@android:color/black" tools:targetApi="jelly_bean" />
+        android:text="@string/slogan"
+        android:textColor="@android:color/black"
+        tools:targetApi="jelly_bean" />
 
     <TextView
         android:id="@+id/title"
@@ -33,9 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="18dp"
         android:fontFamily="cursive"
-        android:text="@string/COFFe"
+        android:text="@string/title"
         android:textColor="@android:color/background_light"
         android:textSize="72sp"
         tools:targetApi="jelly_bean" />
@@ -57,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:hint="@string/User"
+            android:hint="@string/personName"
             android:inputType="textPersonName"
             android:textColorLink="#ff6666"
             android:textSize="24sp" />
@@ -68,7 +69,7 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:textColorLink="#ff6666"
             android:textSize="24sp">
@@ -80,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:hint="@string/Pass"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:textColorLink="#ff6666"
             android:textSize="24sp" />
@@ -90,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Tlf"
+            android:hint="@string/phoneNumber"
             android:inputType="phone" />
 
 
@@ -104,7 +105,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:background="#ff6666"
-        android:text="@string/Register"
+        android:text="@string/register"
         android:textColor="@android:color/background_light"
         android:textSize="18sp" />
 
@@ -115,7 +116,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:fontFamily="casual"
-        android:text="@string/im_register_return_to_login"
+        android:text="@string/alreadyRegistered"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         tools:targetApi="jelly_bean" />

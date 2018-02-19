@@ -6,37 +6,41 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/home"
-            android:title="Home" />
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/navDrawerHome" />
         <item
             android:id="@+id/nav_ftd"
-            android:icon="?android:attr/actionModeFindDrawable"
-            android:title="Favors to do"
+            android:icon="@drawable/ic_list_black_24dp"
+            android:title="@string/navDrawerToDo"
             tools:ignore="NewApi" />
         <item
             android:id="@+id/nav_df"
-            android:icon="@android:drawable/ic_menu_edit"
-            android:title="Done Favors" />
+            android:icon="@drawable/ic_playlist_add_check_black_24dp"
+            android:title="@string/navDrawerDone" />
         <item
             android:id="@+id/nav_fr"
             android:icon="?android:attr/actionModePasteDrawable"
-            android:title="Favors Requested" />
+            android:title="@string/navDrawerRequested" />
         <item
             android:id="@+id/nav_mc"
-            android:icon="@android:drawable/ic_menu_today"
-            android:title="My Community" />
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="@string/navDrawerCommunities" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Options">
         <menu>
             <item
                 android:id="@+id/nav_mp"
-                android:icon="@android:drawable/ic_menu_my_calendar"
-                android:title="My Profile" />
+                android:icon="@drawable/ic_account_circle_black_24dp"
+                android:title="@string/profile" />
+            <item
+                android:id="@+id/nav_sett"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/settings" />
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@android:drawable/ic_lock_power_off"
-                android:title="Exit" />
+                android:title="@string/logout" />
         </menu>
     </item>
 

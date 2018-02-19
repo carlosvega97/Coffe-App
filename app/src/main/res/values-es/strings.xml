@@ -1,0 +1,45 @@
+<resources>
+    <!-- Global -->
+    <string name="app_name">Coffè</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="title">COFFè</string>
+    <string name="slogan">Comunidad de Favores</string>
+
+    <!-- Login Activity-->
+    <string name="login">INICIAR SESIÓN</string>
+    <string name="recoverPassword">¿Has olvidado tu contraseña?</string>
+    <string name="signup">¿Aún no tienes cuenta? ¡Regístrate!</string>
+
+    <!-- Forgot Password Activity-->
+    <string name="forgotpwdtxt">Escribe tu correo electrónico en el cuadro de texto para recibir un enlace de reseteo de contraseña.</string>
+    <string name="forgotpwdconfirm">ENVIAR</string>
+
+    <!-- Sign-Up Activity -->
+    <string name="personName">Nombre</string>
+    <string name="phoneNumber">Número de teléfono</string>
+    <string name="register">Regístrame</string>
+    <string name="alreadyRegistered">Ya tengo cuenta, llévame al Inicio de Sesión</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navDrawerHome">Inicio</string>
+    <string name="navDrawerToDo">Favores a Realizar</string>
+    <string name="navDrawerDone">Favores Realizados</string>
+    <string name="navDrawerRequested">Favores Pedidos</string>
+    <string name="navDrawerCommunities">Mis Comunidades</string>
+    <string name="profile">Mi Perfil</string>
+    <string name="settings">Preferencias</string>
+    <string name="logout">Cerrar Sesión</string>
+
+    <!-- Home Activity -->
+    <!--TODO-->
+
+    <!-- Picture Descriptions -->
+    <string name="loginCoffeeCup">Taza de Café del Inicio de Sesión</string>
+    <string name="splashScreenHeart">Corazón de la Pantalla de Carga</string>
+    <string name="splashScreenCup">Taza de la Pantalla de Carga</string>
+    <string name="homeAddFavorCup">Taza de Pedir Favor</string>
+    <string name="homeAcceptFavorCup">Taza de Aceptar Favor</string>
+    <string name="profilePicture">Foto de Perfil Predeterminada</string>
+
+</resources>

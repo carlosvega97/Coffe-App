@@ -3,7 +3,6 @@ package com.example.javie.coffeapp;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
@@ -109,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 
         LayoutInflater inflater = this.getLayoutInflater();
 
-        View v = inflater.inflate(R.layout.actoivity_dialogrempass, null);
+        View v = inflater.inflate(R.layout.activity_reset_pass, null);
         builder.setView(v);
 
 
