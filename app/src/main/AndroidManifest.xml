@@ -33,7 +33,8 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
         <activity android:name=".PerfilActivity" />
-        <activity android:name=".ResetPassActivity"></activity>
+        <activity android:name=".ResetPassActivity" />
+        <activity android:name=".CommunityActivity" />
     </application>
 
 </manifest>
