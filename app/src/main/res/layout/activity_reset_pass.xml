@@ -46,7 +46,7 @@
             android:fontFamily="casual"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:textColorLink="#ff6666" />
+            android:textColorLink="@color/MORADO1" />
 
         <TextView
             android:id="@+id/ttSend"
@@ -57,7 +57,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="monospace"
             android:text="@string/forgotpwdconfirm"
-            android:textColor="#ff6666"
+            android:textColor="@color/MORADO1"
             android:textSize="20sp" />
 
     </LinearLayout>

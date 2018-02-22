@@ -5,7 +5,7 @@
     android:id="@+id/rllayt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background=" #009FAF"
+    android:background="@color/textcolor"
     tools:context="com.example.javie.coffeapp.Splash_Screen">
 
     <ImageView
@@ -17,28 +17,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/splashScreenCup"
-        android:src="@drawable/logocoffetazasincoffe"
+        android:src="@drawable/logocoffetazatranspconheart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.254" />
-
-    <ImageView
-        android:id="@+id/corazonimg"
-        android:layout_width="36dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/splashScreenHeart"
-        android:src="@drawable/corazonrosado"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.568" />
 
     <TextView
         android:id="@+id/tittleSS"
@@ -50,7 +34,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="cursive"
         android:text="@string/title"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/amarilloMostaza"
         android:textSize="72sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +53,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="@string/slogan"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/amarilloMostaza"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

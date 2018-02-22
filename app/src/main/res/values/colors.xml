@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00838f</color>
-    <color name="colorPrimaryDark">#00838f</color>
+    <color name="MORADO1">#760226</color>
+    <color name="MORADO3">#5F021F</color>
     <color name="colorAccent">#ff4081</color>
-    <color name="backgroundColor">#00838f</color>
-    <color name="backgroundColor22">#009FAF</color>
+    <color name="backgroundColor">#760226</color>
+    <color name="backgroundColor22">#760226</color>
+    <color name ="textcolor">#760226</color>
+    <color name ="amarilloMostaza">#FCDDA5</color>
 </resources>
