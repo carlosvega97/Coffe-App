@@ -10,36 +10,35 @@
     tools:showIn="@layout/app_bar_home">
 
 
-    <ImageView
-        android:id="@+id/imageView9"
+    <Button
+        android:id="@+id/afbttn"
         android:layout_width="247dp"
-        android:layout_height="251dp"
+        android:layout_height="250dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/homeAddFavorCup"
+        android:background="@drawable/logocoffetazamodificado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092"
-        app:srcCompat="@drawable/logocoffetazamodificado" />
+        app:layout_constraintVertical_bias="0.091" />
 
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="247dp"
-        android:layout_height="251dp"
+    <Button
+        android:id="@+id/acfbttn"
+        android:layout_width="246dp"
+        android:layout_height="250dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/homeAcceptFavorCup"
+        android:background="@drawable/logocoffetazamodificadoless"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:layout_constraintVertical_bias="0.086"
-        app:srcCompat="@drawable/logocoffetazamodificadoless" />
+        app:layout_constraintTop_toBottomOf="@+id/afbttn"
+        app:layout_constraintVertical_bias="0.306" />
 
 </android.support.constraint.ConstraintLayout>

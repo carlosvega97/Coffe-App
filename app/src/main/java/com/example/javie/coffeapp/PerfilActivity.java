@@ -3,6 +3,7 @@ package com.example.javie.coffeapp;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,11 +29,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.File;
@@ -45,7 +52,6 @@ public class PerfilActivity extends AppCompatActivity
     TextView tvNavDrawerUser, tvNavDrawerEmail, tvPersonNameProfile, tvEmailProfile, tvPNumberProfile;
     private Database database = new Database();
     private User user;
-
 //***************************************************************************************************************
 private static String APP_DIRECTORY = "MyPictureApp/";
     private static String MEDIA_DIRECTORY = APP_DIRECTORY + "PictureApp";
@@ -59,7 +65,11 @@ private static String APP_DIRECTORY = "MyPictureApp/";
     private RelativeLayout mRlView;
     private CircularImageView mSetImage;
 
+    private StorageReference miStorage;
+    private ProgressDialog mProgressDialog;
     private String mPath;
+
+    FirebaseAuth mAuth;
 
 //***************************************************************************************************************
 
@@ -83,6 +93,8 @@ private static String APP_DIRECTORY = "MyPictureApp/";
         mOptionButton = findViewById(R.id.buttonimg);
         mRlView = findViewById(R.id.rlView);
         mSetImage = findViewById(R.id.imageprofile);
+        miStorage = FirebaseStorage.getInstance().getReference();
+        mProgressDialog = new ProgressDialog(this);
 
         if(myRequestStoragePermission()){
             mOptionButton.setEnabled(true);
@@ -279,9 +291,33 @@ private static String APP_DIRECTORY = "MyPictureApp/";
                     mSetImage.setImageBitmap(bitmap);
                     break;
                 case SELECT_PICTURE:
-                    Uri path = data.getData();
-                    mSetImage.setImageURI(path);
-                    break;
+                    mProgressDialog.setTitle("Subiendo Foto");
+                    mProgressDialog.setMessage("Subiendo Foto");
+                    mProgressDialog.setCancelable(false);
+                    mProgressDialog.show();
+
+
+                    final Uri path = data.getData();
+                    final String foto = "fotodeperfil";
+                    StorageReference filePath = miStorage.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child(foto);
+                    filePath.putFile(path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            String fotourl = "gs://coffe-36307.appspot.com/fotos/" + foto;
+                            //******************************************+
+
+                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+                            DatabaseReference currentUserDB =mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("photourl");
+                            currentUserDB.setValue(fotourl);
+
+                            //DataRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("urlfoto").setValue(downloadUrl.toString());
+                            mProgressDialog.dismiss();
+                            mSetImage.setImageURI(path);
+
+                            Toast.makeText(PerfilActivity.this, "Foto añadida con exito",Toast.LENGTH_SHORT).show();
+                        }
+                    });
             }
         }
     }

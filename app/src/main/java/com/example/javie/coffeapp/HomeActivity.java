@@ -1,5 +1,6 @@
 package com.example.javie.coffeapp;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,14 +9,31 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GotUser {
     private TextView tvNavDrawerUser, tvNavDrawerEmail;
     private Database database = new Database();
+    protected Button mAddFavor, mAcceptFavor;
+    private ArrayList<String> arraycomunidades = new ArrayList<String>();
+    DatabaseReference DataRef;
+    ListView miListview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +41,9 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mAddFavor = findViewById(R.id.afbttn);
+        mAcceptFavor = findViewById(R.id.acfbttn);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -32,6 +53,82 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mAddFavor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogAddFavor();
+            }
+        });
+        mAcceptFavor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogAcceptFavorWithRefreshLayout();
+            }
+        });
+    }
+
+    private void dialogAcceptFavorWithRefreshLayout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        View v = inflater.inflate(R.layout.activity_list_view, null);
+        miListview=v.findViewById(R.id.listview44);
+
+        DataRef = FirebaseDatabase.getInstance().getReference("Communities");
+        DataRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Community comun = dataSnapshot.getValue(Community.class);
+                Community comun2 = new Community(comun.getName(), comun.getDescription(), comun.getAddress(), comun.getUsers());
+                arraycomunidades.add(comun.getName()+"\n"+comun.getAddress());
+
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_list_item_1, arraycomunidades);
+                miListview.setAdapter(arrayAdapter);
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        builder.setView(v);
+        builder.create().show();
+    }
+
+//    private void dialogAcceptFavor() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        LayoutInflater inflater = this.getLayoutInflater();
+//
+//        View v = inflater.inflate(R.layout.activity_accept_favor_community, null);
+//        builder.setView(v);
+//        builder.create().show();
+//    }
+
+    private void dialogAddFavor() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        View v = inflater.inflate(R.layout.activity_add_favor_community, null);
+        builder.setView(v);
+        builder.create().show();
     }
 
     @Override

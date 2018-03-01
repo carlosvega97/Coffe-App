@@ -77,6 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
         final String email = mEmailField.getText().toString().trim();
         String password = mPasswordField.getText().toString().trim();
         final String pNumber = mTlfField.getText().toString().trim();
+        final String photourl = "null";
 
         if (!TextUtils.isEmpty(personName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(pNumber)){
             mProgess.setMessage("Registering new User, please wait...");
@@ -92,7 +93,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
                                 DatabaseReference currentUserDB = mDatabase.child(mAuth.getCurrentUser().getUid());
-                                currentUserDB.setValue(new User(email, personName, pNumber));
+                                currentUserDB.setValue(new User(email, personName, pNumber, photourl));
 
                                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                                 startActivity(intent);
