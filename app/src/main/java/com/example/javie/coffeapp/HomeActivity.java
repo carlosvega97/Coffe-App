@@ -144,7 +144,6 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         tvNavDrawerUser = findViewById(R.id.tvNavDrawerUser);
@@ -161,7 +160,9 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-
+        if (id == R.id.nav_home) {
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -180,7 +181,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_fr) {
 
         } else if (id == R.id.nav_mc) {
-
+            Intent intent = new Intent(HomeActivity.this, CommunitiesActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_mp) {
             Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
             startActivity(intent);
