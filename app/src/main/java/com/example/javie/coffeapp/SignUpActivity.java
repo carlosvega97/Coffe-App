@@ -8,12 +8,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -53,14 +54,14 @@ public class SignUpActivity extends AppCompatActivity {
         miReturnLogin = findViewById(R.id.txtvwLog);
         mTlfField = findViewById(R.id.et_tlf);
         relativeLayout = findViewById(R.id.crtllyt);
-
-
         mProgess = new ProgressDialog(this);
+
         miReturnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.rigth_in, R.anim.right_out);
             }
         });
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +99,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                                 startActivity(intent);
                             }else {
-                                Snackbar.make(relativeLayout, "         this Email:  "+ email +" is already registered", Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(relativeLayout, "this Email:  "+ email +" is already registered", Snackbar.LENGTH_LONG).show();
                             }
                         }
                     });

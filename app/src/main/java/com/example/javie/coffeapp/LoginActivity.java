@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPass = findViewById(R.id.etPass1);
         mRmPass = findViewById(R.id.txtRmPass);
         relativeLayout = findViewById(R.id.relLayLogin);
+        mProgess = new ProgressDialog(this);
 
         mLoginButtom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
@@ -87,9 +89,12 @@ public class LoginActivity extends AppCompatActivity {
         final String pwd = editTextPass.getText().toString().trim();
 
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pwd)) {
+            mProgess.setMessage("Login in the app...wait...");
+            mProgess.show();
             mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        mProgess.dismiss();
                         // Sign in success, update UI with the signed-in user's information
                         Log.v("Login: ", "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();

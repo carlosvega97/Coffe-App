@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -29,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,12 +39,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.File;
+import java.io.IOException;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -53,7 +57,7 @@ public class PerfilActivity extends AppCompatActivity
     private Database database = new Database();
     private User user;
 //***************************************************************************************************************
-private static String APP_DIRECTORY = "MyPictureApp/";
+    private static String APP_DIRECTORY = "MyPictureApp/";
     private static String MEDIA_DIRECTORY = APP_DIRECTORY + "PictureApp";
 
     private final int MY_PERMISSIONS = 100;
@@ -64,6 +68,8 @@ private static String APP_DIRECTORY = "MyPictureApp/";
     private Button mOptionButton;
     private RelativeLayout mRlView;
     private CircularImageView mSetImage;
+    //private CircularImageView mImageView;
+    private ImageView mImageView;
 
     private StorageReference miStorage;
     private ProgressDialog mProgressDialog;
@@ -85,6 +91,7 @@ private static String APP_DIRECTORY = "MyPictureApp/";
                 this, drawer, toolbar, R.string.navDrawerOpen, R.string.navDrawerClose);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        mAuth = FirebaseAuth.getInstance();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         tvPersonNameProfile = findViewById(R.id.tvPersonNameProfile);
@@ -151,6 +158,9 @@ private static String APP_DIRECTORY = "MyPictureApp/";
         tvNavDrawerUser = findViewById(R.id.tvNavDrawerUser);
         tvNavDrawerEmail = findViewById(R.id.tvNavDrawerEmail);
         user = database.getLoggedUser(this);
+        mSetImage = findViewById(R.id.imageprofile);
+        mImageView = findViewById(R.id.imageViewUser23);
+
         return true;
     }
 
@@ -207,7 +217,29 @@ private static String APP_DIRECTORY = "MyPictureApp/";
         tvPersonNameProfile.setText(user.getPersonName());
         tvEmailProfile.setText(user.getEmail());
         tvPNumberProfile.setText(user.getPnumber());
+
+        try {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://coffe-36307.appspot.com").child("Users").child(mAuth.getCurrentUser().getUid()).child("fotodeperfil");
+            final File localFile;
+
+            localFile = File.createTempFile("images", "jpg");
+
+            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    mSetImage.setImageBitmap(bitmap);
+                    mImageView.setImageBitmap(bitmap);
+
+
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @SuppressLint("NewApi")
     public void showOptions() {

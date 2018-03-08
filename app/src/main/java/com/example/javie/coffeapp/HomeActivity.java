@@ -2,6 +2,8 @@ package com.example.javie.coffeapp;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,15 +17,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity
@@ -31,6 +42,9 @@ public class HomeActivity extends AppCompatActivity
     private TextView tvNavDrawerUser, tvNavDrawerEmail;
     private Database database = new Database();
     protected Button mAddFavor, mAcceptFavor;
+    //private CircularImageView imageViewUser;
+    private ImageView imageViewUser;
+    FirebaseAuth fauth;
     private ArrayList<String> arraycomunidades = new ArrayList<String>();
     DatabaseReference DataRef;
     ListView miListview;
@@ -41,7 +55,7 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        fauth = FirebaseAuth.getInstance();
         mAddFavor = findViewById(R.id.afbttn);
         mAcceptFavor = findViewById(R.id.acfbttn);
 
@@ -148,6 +162,7 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         tvNavDrawerUser = findViewById(R.id.tvNavDrawerUser);
         tvNavDrawerEmail = findViewById(R.id.tvNavDrawerEmail);
+        imageViewUser = findViewById(R.id.imageViewUser23);
         User user = database.getLoggedUser(this);
         return true;
     }
@@ -198,9 +213,27 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
     public void loggedUser(User user) {
         tvNavDrawerUser.setText(user.getPersonName());
         tvNavDrawerEmail.setText(user.getEmail());
+
+        try {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://coffe-36307.appspot.com").child("Users").child(fauth.getCurrentUser().getUid()).child("fotodeperfil");
+            final File localFile;
+
+            localFile = File.createTempFile("images", "jpg");
+
+            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    imageViewUser.setImageBitmap(bitmap);
+
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

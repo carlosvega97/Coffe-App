@@ -46,6 +46,7 @@
         <activity android:name=".ImagenProfileDialog" />
         <activity android:name=".AddFavorCommunityActivity" />
         <activity android:name=".AcceptFavorCommunityActivity" />
+        <activity android:name=".CommunitiesActivity"/>
         <activity android:name=".ListViewActivity"></activity>
     </application>
 
