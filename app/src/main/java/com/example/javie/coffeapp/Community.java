@@ -3,7 +3,7 @@ package com.example.javie.coffeapp;
 import java.util.ArrayList;
 
 /**
- * Created by javie on 27/02/2018.
+ * Created by pabli on 03/01/2018.
  */
 public class Community {
     private String name, description, address;

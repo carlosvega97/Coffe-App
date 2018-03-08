@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Coffe.iml" filepath="$PROJECT_DIR$/Coffe.iml" />
       <module fileurl="file://C:\Users\javie\AndroidStudioProjects\CoffeApp\Coffe.iml" filepath="C:\Users\javie\AndroidStudioProjects\CoffeApp\Coffe.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CoffeApp.iml" filepath="$PROJECT_DIR$/CoffeApp.iml" />
+      <module fileurl="file://C:\Users\pabli\AndroidStudioProjects\Coffe\CoffeApp.iml" filepath="C:\Users\pabli\AndroidStudioProjects\Coffe\CoffeApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

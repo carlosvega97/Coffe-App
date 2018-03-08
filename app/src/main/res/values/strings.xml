@@ -36,6 +36,16 @@
     <!-- Home Activity -->
     <!--TODO-->
 
+    <!-- Communities Activity -->
+    <!-- My Communities Fragment -->
+    <string name="createCommunityDialogTitle">Create Community</string>
+    <string name="createCommunityDialogMessage">Fill your new Community Data</string>
+    <string name="createCommunityDialogPositiveButton">Create</string>
+    <string name="createCommunityDialogNegativeButton">Cancel</string>
+    <string name="createCommunityDialogCommunityName">Name</string>
+    <string name="createCommunityDialogCommunityDescription">Description</string>
+    <string name="createCommunityDialogCommunityAddress">Address</string>
+
     <!-- Picture Descriptions -->
     <string name="loginCoffeeCup">Login Coffee Cup</string>
     <string name="splashScreenHeart">Splash Screen Heart</string>
@@ -50,8 +60,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_text_1">My Communities</string>
+    <string name="tab_text_2">All Communities</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
