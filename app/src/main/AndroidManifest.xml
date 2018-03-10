@@ -46,8 +46,17 @@
         <activity android:name=".ImagenProfileDialog" />
         <activity android:name=".AddFavorCommunityActivity" />
         <activity android:name=".AcceptFavorCommunityActivity" />
-        <activity android:name=".CommunitiesActivity"/>
-        <activity android:name=".ListViewActivity"></activity>
+        <activity android:name=".CommunitiesActivity" />
+        <activity android:name=".ListViewActivity" />
+        <activity
+            android:name=".SingleCommunityActivity"
+            android:label="@string/title_activity_single_community"
+            android:parentActivityName=".CommunitiesActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.javie.coffeapp.CommunitiesActivity" />
+        </activity>
     </application>
 
 </manifest>

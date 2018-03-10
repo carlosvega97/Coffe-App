@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,12 @@ public class MyCommunitiesFragment extends Fragment {
             }
         });
         getMyCommunities();
+        lVMyCommunities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                
+            }
+        });
         return myCommunitiesView;
     }
 
@@ -94,30 +101,20 @@ public class MyCommunitiesFragment extends Fragment {
 
     private void getMyCommunities() {
         final String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Communities").child("users");
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Communities");
         databaseReference.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final ArrayList<Community> myCommunities = new ArrayList<>();
-                 for (DataSnapshot usersData : dataSnapshot.getChildren()) {
-                    if (usersData.getValue().equals(userID)) {
-                       databaseReference.getParent().addValueEventListener(new ValueEventListener() {
-                           @Override
-                           public void onDataChange(DataSnapshot dataSnapshot) {
-                               for (DataSnapshot communitydata: dataSnapshot.getChildren()) {
-                                   Community community = communitydata.getValue(Community.class);
-                                   myCommunities.add(community);
-                               }
-                               getMyCommunitiesData(myCommunities);
-                           }
-
-                           @Override
-                           public void onCancelled(DatabaseError databaseError) {
-
-                           }
-                       });
+                ArrayList<Community> subscribedCommunities = new ArrayList<>();
+                for (DataSnapshot communityData: dataSnapshot.getChildren()){
+                    Community communityObj = communityData.getValue(Community.class);
+                    ArrayList <String> usersList = communityObj.getUsers();
+                    if (usersList.contains(userID)){
+                        subscribedCommunities.add(communityObj);
                     }
                 }
+                getMyCommunitiesData(subscribedCommunities);
             }
 
             @Override
