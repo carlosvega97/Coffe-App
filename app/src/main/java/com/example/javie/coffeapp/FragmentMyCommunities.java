@@ -4,6 +4,7 @@ package com.example.javie.coffeapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -28,14 +29,14 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyCommunitiesFragment extends Fragment {
+public class FragmentMyCommunities extends Fragment {
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     String userRef = firebaseUser.getUid();
     private TextInputEditText tIETTitleAddCommunity, tIETDescriptionAddCommunity, tIETAddressAddCommunity;
     private ListView lVMyCommunities;
     private View myCommunitiesView;
 
-    public MyCommunitiesFragment() {
+    public FragmentMyCommunities() {
         // Required empty public constructor
     }
 
@@ -53,12 +54,6 @@ public class MyCommunitiesFragment extends Fragment {
             }
         });
         getMyCommunities();
-        lVMyCommunities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                
-            }
-        });
         return myCommunitiesView;
     }
 
@@ -90,6 +85,15 @@ public class MyCommunitiesFragment extends Fragment {
 
     private void loadListView() {
         lVMyCommunities = myCommunitiesView.findViewById(R.id.lVMyCommunities);
+        lVMyCommunities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Community community = (Community) lVMyCommunities.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(), SingleCommunityActivity.class);
+                intent.putExtra("communityTitle", community.getName().toString());
+                startActivity(intent);
+            }
+        });
     }
 
     private void getMyCommunitiesData(ArrayList<Community> myCommunities) {
@@ -101,7 +105,7 @@ public class MyCommunitiesFragment extends Fragment {
 
     private void getMyCommunities() {
         final String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Communities");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Communities");
         databaseReference.addValueEventListener(new ValueEventListener() {
 
             @Override

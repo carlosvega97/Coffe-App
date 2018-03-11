@@ -21,7 +21,7 @@ public class Splash_Screen extends Activity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_splash__screen);
+        setContentView(R.layout.activity_splash_screen);
 
         txtfadein = findViewById(R.id.tVheart);
 

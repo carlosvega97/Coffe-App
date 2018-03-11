@@ -8,31 +8,28 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 
 /**
- * Created by pabli on 03/08/2018.
+ * Created by pabli on 03/11/2018.
  */
 
-public class CommunityListViewAdapter implements ListAdapter {
-    private ArrayList<Community> communities;
-    private TextView tVTitleCommunityTemplate;
+public class UsersListViewAdapter implements ListAdapter {
+    private ArrayList<User> userList;
+    private TextView tVPersonNameTemplate, tVEmailTemplate;
     private Context context;
 
-    public CommunityListViewAdapter(ArrayList<Community> communities, Context context) {
-        this.communities = communities;
+    public UsersListViewAdapter(ArrayList<User> userList, Context context) {
+        this.userList = userList;
         this.context = context;
     }
 
-    public ArrayList<Community> getCommunities() {
-        return communities;
+    public ArrayList<User> getUserList() {
+        return userList;
     }
 
-    public void setCommunities(ArrayList<Community> communities) {
-        this.communities = communities;
+    public void setUserList(ArrayList<User> userList) {
+        this.userList = userList;
     }
 
     @Override
@@ -57,12 +54,12 @@ public class CommunityListViewAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
-        return communities.size();
+        return userList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return communities.get(position);
+        return userList.get(position);
     }
 
     @Override
@@ -78,10 +75,10 @@ public class CommunityListViewAdapter implements ListAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View communityTemplateView = inflater.inflate(R.layout.community_list_view_item_template, parent, false);
-        tVTitleCommunityTemplate = communityTemplateView.findViewById(R.id.tvCommunityTitleTemplate);
-        tVTitleCommunityTemplate.setText(communities.get(position).getName());
-        return communityTemplateView;
+        View userTemplateView = inflater.inflate(R.layout.users_list_view_item_template, parent, false);
+        tVPersonNameTemplate = userTemplateView.findViewById(R.id.tVPersonNameTemplate);
+        tVEmailTemplate = userTemplateView.findViewById(R.id.tVEmailTemplate);
+        return userTemplateView;
     }
 
     @Override
@@ -96,6 +93,6 @@ public class CommunityListViewAdapter implements ListAdapter {
 
     @Override
     public boolean isEmpty() {
-        return communities.isEmpty();
+        return userList.isEmpty();
     }
 }

@@ -37,6 +37,8 @@
     <!--TODO-->
 
     <!-- Communities Activity -->
+    <string name="tabMyCommunities">My Communities</string>
+    <string name="tabAllCommunities">All Communities</string>
     <!-- My Communities Fragment -->
     <string name="createCommunityDialogTitle">Create Community</string>
     <string name="createCommunityDialogMessage">Fill your new Community Data</string>
@@ -55,17 +57,21 @@
     <string name="profilePicture">Default Profile Picture</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_communities">CommunitiesActivity</string>
+    <string name="iconCommunityTitle">Community Title</string>
+    <string name="iconCommunityDescription">Community Description</string>
+    <string name="iconCommunityAddress">Community Address</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="tab_text_1">My Communities</string>
-    <string name="tab_text_2">All Communities</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <!--Single Community Activity -->
+    <string name="title_activity_single_community">Community</string>
+    <string name="tabPostedFavors">Favors</string>
+    <string name="tabCommunityMembers">Members</string>
+    <string name="tabCommunityInfo">Info</string>
+    <!-- Fragment Posted Favors -->
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_single_community">SingleCommunityActivity</string>
-    <string name="tab_text_3">Tab 3</string>
+    <!-- Fragment Community Info -->
+    <string name="leaveCommunity">Leave Community</string>
+
 </resources>

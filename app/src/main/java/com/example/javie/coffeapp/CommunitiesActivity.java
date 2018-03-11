@@ -148,7 +148,7 @@ public class CommunitiesActivity extends AppCompatActivity implements Navigation
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                   return new MyCommunitiesFragment();
+                   return new FragmentMyCommunities();
                 case 1:
                     return new AllCommunitiesFragment();
                 default:
