@@ -34,7 +34,11 @@
     <string name="logout">Log Out</string>
 
     <!-- Home Activity -->
-    <!--TODO-->
+
+    <!-- Add favour dialog -->
+    <string name="addFavourTitle">Title</string>
+    <string name="addFavourDescription">Description</string>
+    <string name="addFavourDate">Date</string>
 
     <!-- Communities Activity -->
     <string name="tabMyCommunities">My Communities</string>
@@ -73,5 +77,8 @@
 
     <!-- Fragment Community Info -->
     <string name="leaveCommunity">Leave Community</string>
+
+
+    <!-- A -->
 
 </resources>

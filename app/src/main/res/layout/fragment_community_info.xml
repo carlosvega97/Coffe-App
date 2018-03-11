@@ -11,7 +11,7 @@
         android:id="@+id/tVCommunityTitleInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="100dp"
         android:textSize="25sp" />
 
@@ -19,21 +19,21 @@
         android:id="@+id/tVAddressInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="300dp" />
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="200dp" />
 
     <TextView
         android:id="@+id/tVCommunityDescriptionInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="400dp" />
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="300dp" />
 
     <ImageView
         android:id="@+id/iVTitleInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="110dp"
         android:contentDescription="@string/iconCommunityTitle"
         android:src="@drawable/ic_title_black_24dp" />
@@ -42,8 +42,8 @@
         android:id="@+id/iVAddressInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="200dp"
         android:contentDescription="@string/iconCommunityAddress"
         android:src="@drawable/ic_location_on_black_24dp" />
 
@@ -51,8 +51,8 @@
         android:id="@+id/iVDescriptionInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="300dp"
         android:contentDescription="@string/iconCommunityDescription"
         android:src="@drawable/ic_description_black_24dp" />
 
@@ -60,7 +60,7 @@
         android:id="@+id/btnLeaveCommunity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="400dp"
         android:background="@color/textcolor"
         android:text="@string/leaveCommunity"
         android:textColor="@android:color/background_light" />

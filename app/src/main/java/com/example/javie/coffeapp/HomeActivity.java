@@ -1,53 +1,70 @@
 package com.example.javie.coffeapp;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.mikhaellopez.circularimageview.CircularImageView;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GotUser {
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    String userRef = firebaseUser.getUid();
+    private Spinner communitySpinner;
+    private TextInputEditText tIETTitleAddFavor, tIETDescriptionAddFavor, tIETDateAddFavor;
     private TextView tvNavDrawerUser, tvNavDrawerEmail;
     private Database database = new Database();
     protected Button mAddFavor, mAcceptFavor;
-    //private CircularImageView imageViewUser;
-    private ImageView imageViewUser;
+    private CircleImageView imageViewUser;
+   // private ImageView imageViewUser;
     FirebaseAuth fauth;
     private ArrayList<String> arraycomunidades = new ArrayList<String>();
     DatabaseReference DataRef;
     ListView miListview;
+    String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    private String communityName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +88,7 @@ public class HomeActivity extends AppCompatActivity
         mAddFavor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogAddFavor();
+                dialogAddFavor(v.getContext());
             }
         });
         mAcceptFavor.setOnClickListener(new View.OnClickListener() {
@@ -136,13 +153,34 @@ public class HomeActivity extends AppCompatActivity
 //        builder.create().show();
 //    }
 
-    private void dialogAddFavor() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
+    private void dialogAddFavor(final Context context) {
+        final View dialogView = LayoutInflater.from(context).inflate(R.layout.activity_add_favor_community, null);
+        communitySpinner = dialogView.findViewById(R.id.communitySpinner);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, getMyCommunities());
+        communitySpinner.setAdapter(dataAdapter);
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setTitle(R.string.createCommunityDialogTitle)
+                .setMessage(R.string.createCommunityDialogMessage)
+                .setView(dialogView)
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tIETTitleAddFavor = dialogView.findViewById(R.id.tIETTitleAddFavor);
+                        tIETDescriptionAddFavor = dialogView.findViewById(R.id.tIETDescriptionAddFavor);
+                        tIETDateAddFavor = dialogView.findViewById(R.id.tIETDateAddFavor);
+                        String title = tIETTitleAddFavor.getText().toString();
+                        String description = tIETDescriptionAddFavor.getText().toString();
+                        String address = tIETDateAddFavor.getText().toString();
+                        communityName = communitySpinner.getSelectedItem().toString();
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors");
+                        mDatabase.setValue(new Favor(title, description, address));
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
 
-        View v = inflater.inflate(R.layout.activity_add_favor_community, null);
-        builder.setView(v);
-        builder.create().show();
+
     }
 
     @Override
@@ -235,5 +273,29 @@ public class HomeActivity extends AppCompatActivity
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private List<String> getMyCommunities() {
+        final List<String> subscribedCommunities = new ArrayList<String>();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Communities");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot communityData: dataSnapshot.getChildren()){
+                    Community communityObj = communityData.getValue(Community.class);
+                    ArrayList <String> usersList = communityObj.getUsers();
+                    if (usersList.contains(userID)){
+                        Log.d("Community", communityObj.getName());
+                        subscribedCommunities.add(communityObj.getName().toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return subscribedCommunities;
     }
 }
