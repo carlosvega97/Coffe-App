@@ -3,6 +3,7 @@ package com.example.javie.coffeapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class FragmentCommunityUsers extends Fragment {
     private View communityUsersView;
     private ListView lVCommunityUsers;
     private String communityTitle;
+    private ArrayList<User> userObjs = new ArrayList<>();
 
 
     public FragmentCommunityUsers() {
@@ -41,7 +43,7 @@ public class FragmentCommunityUsers extends Fragment {
         // Inflate the layout for this fragment
         communityUsersView = inflater.inflate(R.layout.fragment_community_users, container, false);
         communityTitle = getActivity().getIntent().getStringExtra("communityTitle");
-        getUsers();
+        getCommunityUserIDs();
         return communityUsersView;
     }
 
@@ -49,51 +51,45 @@ public class FragmentCommunityUsers extends Fragment {
         lVCommunityUsers = communityUsersView.findViewById(R.id.lVCommunityUsers);
     }
 
-    private void getUsersData(ArrayList<User> usersList) {
-        loadComponentViews();
-        UsersListViewAdapter usersListViewAdapter = new UsersListViewAdapter(usersList, getContext());
-        lVCommunityUsers.setAdapter(usersListViewAdapter);
-        usersListViewAdapter.setUserList(usersList);
-    }
-
-    private void getUsers() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        final ArrayList<User> userList = new ArrayList<>();
-        final ArrayList<String> userIDs = getUserIDs();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot userObj : dataSnapshot.getChildren()) {
-                    if (userIDs.contains(userObj.getKey())) {
-                        User user = userObj.getValue(User.class);
-                        userList.add(user);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        getUsersData(userList);
-    }
-    private ArrayList<String> getUserIDs() {
+    private void getCommunityUserIDs() {
         final ArrayList<String> userIDs = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Communities").child(communityTitle).child("users");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot userIDstr : dataSnapshot.getChildren()) {
-                    String userID = userIDstr.getValue(String.class);
-                    userIDs.add(userID);
+                for (DataSnapshot ID : dataSnapshot.getChildren()) {
+                    userIDs.add(ID.getValue().toString());
                 }
+                getCommunityUserObjects(userIDs);
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-        return userIDs;
+
+    }
+    private void getCommunityUserObjects(final ArrayList<String> userList) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot user: dataSnapshot.getChildren()) {
+                    if (userList.contains(user.getKey())) {
+                        userObjs.add(user.getValue(User.class));
+                    }
+                }
+                loadComponentViews();
+                UsersListViewAdapter usersListViewAdapter = new UsersListViewAdapter(userObjs, getContext());
+                lVCommunityUsers.setAdapter(usersListViewAdapter);
+                usersListViewAdapter.setUserList(userObjs);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

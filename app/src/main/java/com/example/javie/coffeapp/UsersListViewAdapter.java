@@ -78,6 +78,8 @@ public class UsersListViewAdapter implements ListAdapter {
         View userTemplateView = inflater.inflate(R.layout.users_list_view_item_template, parent, false);
         tVPersonNameTemplate = userTemplateView.findViewById(R.id.tVPersonNameTemplate);
         tVEmailTemplate = userTemplateView.findViewById(R.id.tVEmailTemplate);
+        tVPersonNameTemplate.setText(userList.get(position).getPersonName());
+        tVEmailTemplate.setText(userList.get(position).getEmail());
         return userTemplateView;
     }
 
