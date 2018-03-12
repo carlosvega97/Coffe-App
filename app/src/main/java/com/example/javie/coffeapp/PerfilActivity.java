@@ -188,7 +188,8 @@ public class PerfilActivity extends AppCompatActivity
         } else if (id == R.id.nav_fr) {
 
         } else if (id == R.id.nav_mc) {
-
+            Intent intent = new Intent(PerfilActivity.this, CommunitiesActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_mp) {
             Intent intent = new Intent(PerfilActivity.this, PerfilActivity.class);
             startActivity(intent);
@@ -342,6 +343,7 @@ public class PerfilActivity extends AppCompatActivity
                             //DataRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("urlfoto").setValue(downloadUrl.toString());
                             mProgressDialog.dismiss();
                             mSetImage.setImageURI(path);
+                            mImageView.setImageURI(path);
 
                             Toast.makeText(PerfilActivity.this, "Foto añadida con exito",Toast.LENGTH_SHORT).show();
                         }
