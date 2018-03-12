@@ -20,5 +20,5 @@
         android:clickable="true"
         app:srcCompat="@drawable/ic_add_black_24dp"
         android:layout_marginRight="24dp"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat" android:focusable="true"/>
 </FrameLayout>

@@ -48,68 +48,14 @@ public class FragmentPostedFavors extends Fragment {
                              Bundle savedInstanceState) {
         communityName = getActivity().getIntent().getStringExtra("communityTitle");
         postedFavorsView = inflater.inflate(R.layout.fragment_posted_favors, container, false);
-        getAllCommunities();
-       // loadComponentViews();
+        loadComponentViews();
+        getFavorsData();
         return postedFavorsView;
     }
 
-    private void getAllCommunities() {
-        lvCommunityFavors = postedFavorsView.findViewById(R.id.lvCommunityFavors);
-        DataRef = FirebaseDatabase.getInstance().getReference("Communities").child(communityName).child("favors");
-        DataRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                final Favor comun = dataSnapshot.getValue(Favor.class);
-                Favor comun2 = new Favor(comun.getTitle(), comun.getDescription(), comun.getDate(), comun.getOwner(), comun.getTaken());
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(comun.getOwner());
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = dataSnapshot.getValue(User.class);
-                        userName = user.getPersonName();
-                        System.out.println(userName);
-                        arraycomunidades.add(comun.getTitle()+"\n"+ userName);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-
-
-                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, arraycomunidades);
-               // final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_list_item_1, arraycomunidades);
-                lvCommunityFavors.setAdapter(arrayAdapter);
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
     private void loadComponentViews() {
-        lvCommunityFavors = postedFavorsView.findViewById(R.id.lVAllCommunities);
+        lvCommunityFavors = postedFavorsView.findViewById(R.id.lvCommunityFavors);
         fABAddFavor = postedFavorsView.findViewById(R.id.fABAddFavor);
         fABAddFavor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +82,7 @@ public class FragmentPostedFavors extends Fragment {
     }
 
     private void createFavor(View dialogView) {
-        TextInputEditText tIETTitleAddFavorCommunity, tIETDescriptionAddFavorCommunity,tIETDateAddFavorCommunity;
+        TextInputEditText tIETTitleAddFavorCommunity, tIETDescriptionAddFavorCommunity, tIETDateAddFavorCommunity;
         tIETTitleAddFavorCommunity = dialogView.findViewById(R.id.tIETTitleAddFavorCommunity);
         tIETDescriptionAddFavorCommunity = dialogView.findViewById(R.id.tIETDescriptionAddFavorCommunity);
         tIETDateAddFavorCommunity = dialogView.findViewById(R.id.tIETDateAddFavorCommunity);
@@ -145,5 +91,31 @@ public class FragmentPostedFavors extends Fragment {
         String address = tIETDateAddFavorCommunity.getText().toString();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors").child(title);
         mDatabase.setValue(new Favor(title, description, address, userID, "no"));
+    }
+
+    private void setFavorsData(ArrayList<Favor> favorList) {
+        FavorListViewAdapter favorListViewAdapter = new FavorListViewAdapter(favorList, getContext());
+        lvCommunityFavors.setAdapter(favorListViewAdapter);
+        favorListViewAdapter.setFavorList(favorList);
+    }
+
+    private void getFavorsData() {
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Favor> favorList = new ArrayList<>();
+                for (DataSnapshot favorObj : dataSnapshot.getChildren()) {
+                    favorList.add(favorObj.getValue(Favor.class));
+                }
+                setFavorsData(favorList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
