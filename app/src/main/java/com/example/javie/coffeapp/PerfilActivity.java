@@ -185,8 +185,6 @@ public class PerfilActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_ftd) {
 
-        } else if (id == R.id.nav_df) {
-
         } else if (id == R.id.nav_fr) {
 
         } else if (id == R.id.nav_mc) {

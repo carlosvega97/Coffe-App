@@ -14,10 +14,6 @@
             android:title="@string/navDrawerToDo"
             tools:ignore="NewApi" />
         <item
-            android:id="@+id/nav_df"
-            android:icon="@drawable/ic_playlist_add_check_black_24dp"
-            android:title="@string/navDrawerDone" />
-        <item
             android:id="@+id/nav_fr"
             android:icon="?android:attr/actionModePasteDrawable"
             android:title="@string/navDrawerRequested" />

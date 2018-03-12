@@ -25,10 +25,10 @@
     <string name="navDrawerHome">Inicio</string>
     <string name="navDrawerToDo">Favores a Realizar</string>
     <string name="navDrawerDone">Favores Realizados</string>
-    <string name="navDrawerRequested">Favores Pedidos</string>
-    <string name="navDrawerCommunities">Mis Comunidades</string>
-    <string name="profile">Mi Perfil</string>
-    <string name="settings">Preferencias</string>
+    <string name="navDrawerRequested">Mis Favores</string>
+    <string name="navDrawerCommunities">Comunidades</string>
+    <string name="profile">Perfil</string>
+    <string name="settings">Ajustes</string>
     <string name="logout">Cerrar Sesión</string>
 
     <!-- Home Activity -->
