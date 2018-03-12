@@ -68,8 +68,8 @@ public class PerfilActivity extends AppCompatActivity
     private Button mOptionButton;
     private RelativeLayout mRlView;
     private CircularImageView mSetImage;
-    //private CircularImageView mImageView;
     private ImageView mImageView;
+    //private ImageView mImageView;
 
     private StorageReference miStorage;
     private ProgressDialog mProgressDialog;
@@ -108,13 +108,6 @@ public class PerfilActivity extends AppCompatActivity
         }else{
             mOptionButton.setEnabled(false);
         }
-
-        mOptionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showOptions();
-            }
-        });
     }
 
     private boolean myRequestStoragePermission() {
@@ -160,7 +153,7 @@ public class PerfilActivity extends AppCompatActivity
         user = database.getLoggedUser(this);
         mSetImage = findViewById(R.id.imageprofile);
         mImageView = findViewById(R.id.imageViewUser23);
-
+        getMenuInflater().inflate(R.menu.menu_derecho,menu);
         return true;
     }
 
@@ -170,9 +163,12 @@ public class PerfilActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.nav_mp) {
-            return true;
+        if (id == R.id.camara) {
+            showOptions();
+        } else if(id == R.id.pencil){
+            //dialogo editar perfil
         }
+
 
         //noinspection SimplifiableIfStatement
 

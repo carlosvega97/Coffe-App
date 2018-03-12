@@ -34,6 +34,9 @@
     <!-- Home Activity -->
     <!--TODO-->
 
+    <!-- Comunnity Activity -->
+    <string name="titleCA">Mis Comunidades</string>
+
     <!-- Picture Descriptions -->
     <string name="loginCoffeeCup">Taza de Café del Inicio de Sesión</string>
     <string name="splashScreenHeart">Corazón de la Pantalla de Carga</string>
@@ -41,5 +44,8 @@
     <string name="homeAddFavorCup">Taza de Pedir Favor</string>
     <string name="homeAcceptFavorCup">Taza de Aceptar Favor</string>
     <string name="profilePicture">Foto de Perfil Predeterminada</string>
+
+    <string name="tab_text_1">Mis Comunidades</string>
+    <string name="tab_text_2">Todas las Comunidades</string>
 
 </resources>
