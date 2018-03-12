@@ -173,7 +173,7 @@ public class HomeActivity extends AppCompatActivity
                         String address = tIETDateAddFavor.getText().toString();
                         communityName = communitySpinner.getSelectedItem().toString();
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors");
-                        mDatabase.setValue(new Favor(title, description, address));
+                        mDatabase.setValue(new Favor(title, description, address, userID, "no"));
                     }
                 })
                 .setNegativeButton("Cancel", null)

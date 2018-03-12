@@ -5,12 +5,14 @@ package com.example.javie.coffeapp;
  */
 
 public class Favor {
-    private String title, description, date;
+    private String title, description, date, owner, taken;
 
-    public Favor(String title, String description, String date) {
+    public Favor(String title, String description, String date, String owner, String taken) {
         this.title = title;
         this.description = description;
         this.date = date;
+        this.owner = owner;
+        this.taken = taken;
     }
 
     public Favor() {
@@ -38,5 +40,21 @@ public class Favor {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getTaken() {
+        return taken;
+    }
+
+    public void setTaken(String taken) {
+        this.taken = taken;
     }
 }

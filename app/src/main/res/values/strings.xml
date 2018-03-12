@@ -74,7 +74,8 @@
     <string name="tabCommunityMembers">Members</string>
     <string name="tabCommunityInfo">Info</string>
     <!-- Fragment Posted Favors -->
-
+    <!-- Create Favor Dialog-->
+    <string name="addFavorDialogTitle">Create Favor</string>
     <!-- Fragment Community Info -->
     <string name="leaveCommunity">Leave Community</string>
 

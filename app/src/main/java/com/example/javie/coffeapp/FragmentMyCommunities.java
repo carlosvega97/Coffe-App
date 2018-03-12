@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,7 +115,9 @@ public class FragmentMyCommunities extends Fragment {
                 for (DataSnapshot communityData: dataSnapshot.getChildren()){
                     Community communityObj = communityData.getValue(Community.class);
                     ArrayList <String> usersList = communityObj.getUsers();
-                    if (usersList.contains(userID)){
+                    if (usersList == null) {
+                        Log.v("Vacio", "Vacio");
+                    } else if (usersList.contains(userID)){
                         subscribedCommunities.add(communityObj);
                     }
                 }
