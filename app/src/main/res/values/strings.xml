@@ -34,6 +34,8 @@
     <string name="logout">Log Out</string>
 
     <!-- Home Activity -->
+    <string name="addButton">Add</string>
+    <string name="cancelButoon">Cancel</string>
 
     <!-- Add favour dialog -->
     <string name="addFavourTitle">Title</string>
@@ -43,6 +45,7 @@
     <!-- Communities Activity -->
     <string name="tabMyCommunities">Communities</string>
     <string name="tabAllCommunities">All Communities</string>
+    <string name="aceptFavorComunity">CHOOSE A COMMUNITY</string>
     <!-- My Communities Fragment -->
     <string name="createCommunityDialogTitle">Create Community</string>
     <string name="createCommunityDialogMessage">Fill your new Community Data</string>
@@ -75,9 +78,12 @@
     <string name="tabCommunityInfo">Info</string>
     <!-- Fragment Posted Favors -->
     <!-- Create Favor Dialog-->
-    <string name="addFavorDialogTitle">Create Favor</string>
+    <string name="addFavorDialogTitle">Create a Favor</string>
     <!-- Fragment Community Info -->
     <string name="leaveCommunity">Leave Community</string>
+    <string name="tab_text_1">My communities</string>
+    <string name="tab_text_2">All the communities</string>
+    <string name="titleCA">My communities</string>
 
 
     <!-- A -->

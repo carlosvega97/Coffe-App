@@ -43,9 +43,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".PerfilActivity" />
         <activity android:name=".ResetPassActivity" />
-        <activity android:name=".ImagenProfileDialog" />
         <activity android:name=".AddFavorCommunityActivity" />
-        <activity android:name=".AcceptFavorCommunityActivity" />
         <activity android:name=".CommunitiesActivity" />
         <activity android:name=".ListViewActivity" />
         <activity

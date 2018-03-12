@@ -47,5 +47,30 @@
 
     <string name="tab_text_1">Mis Comunidades</string>
     <string name="tab_text_2">Todas las Comunidades</string>
+    <string name="addButton">Añadir</string>
+    <string name="cancelButoon">Cancelar</string>
+    <string name="addFavourTitle">Título</string>
+    <string name="addFavourDescription">Descripción</string>
+    <string name="addFavourDate">Fecha</string>
+    <string name="tabMyCommunities">Comunidades</string>
+    <string name="tabAllCommunities">Todas las comunidades</string>
+    <string name="aceptFavorComunity">ESCOJA UNA COMUNIDAD</string>
+    <string name="createCommunityDialogTitle">Crear una comunidad</string>
+    <string name="createCommunityDialogMessage">Rellene la información de la nueva comunidad</string>
+    <string name="createCommunityDialogPositiveButton">Crear</string>
+    <string name="createCommunityDialogNegativeButton">Cancelar</string>
+    <string name="createCommunityDialogCommunityName">Nombre</string>
+    <string name="createCommunityDialogCommunityDescription">Descripción</string>
+    <string name="createCommunityDialogCommunityAddress">Dirección</string>
+    <string name="title_activity_home">Inicio</string>
+    <string name="leaveCommunity">Abandonar comunidad</string>
+    <string name="addFavorDialogTitle">Crear un favor</string>
+    <string name="tabCommunityInfo">Información</string>
+    <string name="tabCommunityMembers">Miembros</string>
+    <string name="tabPostedFavors">Favores</string>
+    <string name="title_activity_single_community">Comunidad</string>
+    <string name="iconCommunityTitle">Título de la comunidad</string>
+    <string name="iconCommunityDescription">Descripción de la comunidad</string>
+    <string name="iconCommunityAddress">Dirección de la comunidad</string>
 
 </resources>

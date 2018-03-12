@@ -153,7 +153,7 @@ public class HomeActivity extends AppCompatActivity
                 .setTitle(R.string.createCommunityDialogTitle)
                 .setMessage(R.string.createCommunityDialogMessage)
                 .setView(dialogView)
-                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.addButton, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         tIETTitleAddFavor = dialogView.findViewById(R.id.tIETTitleAddFavor);
@@ -167,7 +167,7 @@ public class HomeActivity extends AppCompatActivity
                         mDatabase.setValue(new Favor(title, description, address, userID, "no"));
                     }
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.cancelButoon, null)
                 .create();
         dialog.show();
 
