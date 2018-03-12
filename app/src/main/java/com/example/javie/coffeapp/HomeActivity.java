@@ -144,20 +144,11 @@ public class HomeActivity extends AppCompatActivity
         builder.create().show();
     }
 
-//    private void dialogAcceptFavor() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        LayoutInflater inflater = this.getLayoutInflater();
-//
-//        View v = inflater.inflate(R.layout.activity_accept_favor_community, null);
-//        builder.setView(v);
-//        builder.create().show();
-//    }
-
     private void dialogAddFavor(final Context context) {
         final View dialogView = LayoutInflater.from(context).inflate(R.layout.activity_add_favor_community, null);
         communitySpinner = dialogView.findViewById(R.id.communitySpinner);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, getMyCommunities());
-        communitySpinner.setAdapter(dataAdapter);
+
+        getMyCommunities();//Este método rellenará el spinner cuando Firebase le devuelva los datos
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.createCommunityDialogTitle)
                 .setMessage(R.string.createCommunityDialogMessage)
@@ -172,7 +163,7 @@ public class HomeActivity extends AppCompatActivity
                         String description = tIETDescriptionAddFavor.getText().toString();
                         String address = tIETDateAddFavor.getText().toString();
                         communityName = communitySpinner.getSelectedItem().toString();
-                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors");
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors").child(title);
                         mDatabase.setValue(new Favor(title, description, address, userID, "no"));
                     }
                 })
@@ -272,7 +263,7 @@ public class HomeActivity extends AppCompatActivity
             e.printStackTrace();
         }
     }
-    private List<String> getMyCommunities() {
+    private void getMyCommunities() {
         final List<String> subscribedCommunities = new ArrayList<String>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Communities");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -282,11 +273,16 @@ public class HomeActivity extends AppCompatActivity
                 for (DataSnapshot communityData: dataSnapshot.getChildren()){
                     Community communityObj = communityData.getValue(Community.class);
                     ArrayList <String> usersList = communityObj.getUsers();
-                    if (usersList.contains(userID)){
-                        Log.d("Community", communityObj.getName());
+                    if (usersList == null) {
+
+                    } else if(usersList.contains(userID)){
                         subscribedCommunities.add(communityObj.getName().toString());
                     }
                 }
+                //relleno spiner
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item,subscribedCommunities );
+                communitySpinner.setAdapter(dataAdapter);
+                //Un poco cerdo, pero mejor que antes
             }
 
             @Override
@@ -294,6 +290,6 @@ public class HomeActivity extends AppCompatActivity
 
             }
         });
-        return subscribedCommunities;
+        //return subscribedCommunities;
     }
 }
