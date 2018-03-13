@@ -7,8 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,8 +118,16 @@ public class FragmentPostedFavors extends Fragment {
         String title = tIETTitleAddFavorCommunity.getText().toString();
         String description = tIETDescriptionAddFavorCommunity.getText().toString();
         String address = tIETDateAddFavorCommunity.getText().toString();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors").child(title);
-        mDatabase.setValue(new Favor(title, description, address, userID, "no"));
+
+        if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(description) && !TextUtils.isEmpty(address)) {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors").child(title);
+            mDatabase.setValue(new Favor(title, description, address, userID, "no"));
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID).child("favors").child(title);
+            databaseReference.setValue(new Favor(title, description, address, communityName,"no"));
+        } else {
+            Snackbar.make(lvCommunityFavors, "Fill the fields", Snackbar.LENGTH_SHORT).show();
+        }
+
     }
 
     private void setFavorsData(ArrayList<Favor> favorList) {

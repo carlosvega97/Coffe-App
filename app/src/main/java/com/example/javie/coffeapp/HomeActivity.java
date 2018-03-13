@@ -221,7 +221,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_ftd) {
 
         } else if (id == R.id.nav_fr) {
-
+            Intent intent = new Intent(HomeActivity.this, MyFavorsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_mc) {
             Intent intent = new Intent(HomeActivity.this, CommunitiesActivity.class);
             startActivity(intent);
