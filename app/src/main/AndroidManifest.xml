@@ -57,6 +57,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.javie.coffeapp.CommunitiesActivity" />
         </activity>
+        <activity android:name=".MyFavorsActivity"></activity>
     </application>
 
 </manifest>

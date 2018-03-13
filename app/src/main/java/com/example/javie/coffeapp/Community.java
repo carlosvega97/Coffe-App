@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Community {
     private String name, description, address;
     private ArrayList<String> users;
+    private ArrayList<Favor> favorsList;
 
     public Community(String name, String description, String address, ArrayList<String> users) {
         this.name = name;
@@ -17,6 +18,14 @@ public class Community {
     }
 
     public Community() {
+    }
+
+    public Community(String name, String description, String address, ArrayList<String> users, ArrayList<Favor> favorsList) {
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.users = users;
+        this.favorsList = favorsList;
     }
 
     public String getName() {
@@ -50,4 +59,8 @@ public class Community {
     public void setUsers(ArrayList<String> users) {
         this.users = users;
     }
+
+    public ArrayList<Favor> getFavorsList() {return favorsList;}
+
+    public void setFavorsList(ArrayList<Favor> favorsList) {this.favorsList = favorsList;}
 }

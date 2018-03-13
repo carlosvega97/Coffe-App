@@ -4,6 +4,7 @@ package com.example.javie.coffeapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -11,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,7 +38,7 @@ public class FragmentPostedFavors extends Fragment {
     private String communityName;
     private ArrayList<String> arraycomunidades = new ArrayList<String>();
     DatabaseReference DataRef;
-    String userName;
+    String userName, FavorName;
 
     public FragmentPostedFavors() {
         // Required empty public constructor
@@ -56,6 +58,14 @@ public class FragmentPostedFavors extends Fragment {
 
     private void loadComponentViews() {
         lvCommunityFavors = postedFavorsView.findViewById(R.id.lvCommunityFavors);
+        lvCommunityFavors.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Favor Name= (Favor) lvCommunityFavors.getItemAtPosition(position);
+                FavorName = Name.getTitle();
+                showAcceptFavorDialog(view.getContext());
+            }
+        });
         fABAddFavor = postedFavorsView.findViewById(R.id.fABAddFavor);
         fABAddFavor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +73,23 @@ public class FragmentPostedFavors extends Fragment {
                 showAddFavorDialog(v.getContext());
             }
         });
+    }
+
+    private void showAcceptFavorDialog(Context context) {
+        final View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_accept_favor_template, null);
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setTitle("Accept Favor")
+                .setView(dialogView)
+                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Communities").child(communityName).child("favors");
+                        DatabaseReference mDatabase = databaseReference.child(FavorName).child("taken");
+                        mDatabase.setValue(userID);
+                    }
+                }).setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
     }
 
     private void showAddFavorDialog(Context context) {
@@ -111,7 +138,6 @@ public class FragmentPostedFavors extends Fragment {
                 }
                 setFavorsData(favorList);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
