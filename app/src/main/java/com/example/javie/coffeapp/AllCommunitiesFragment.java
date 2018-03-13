@@ -65,11 +65,24 @@ public class AllCommunitiesFragment extends Fragment {
                 .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ArrayList<String> mArray = new ArrayList<>();
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Communities").child(CommunityName);
-                        mArray.add(databaseReference.child("users").toString());
-                        mArray.add(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                databaseReference.child("users").setValue(mArray);
+                        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Communities").child(CommunityName).child("users");
+                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                final ArrayList<String> mArray = new ArrayList<>();
+                                for (DataSnapshot userID: dataSnapshot.getChildren()) {
+                                    String userKey = userID.getValue(String.class);
+                                    mArray.add(userKey);
+                                }
+                                mArray.add(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                databaseReference.setValue(mArray);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 }).setNegativeButton("Cancel", null)
                 .create();
