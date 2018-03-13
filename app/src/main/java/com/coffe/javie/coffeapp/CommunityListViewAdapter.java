@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class CommunityListViewAdapter implements ListAdapter {
     private ArrayList<Community> communities;
-    private TextView tVTitleCommunityTemplate;
+    private TextView tVTitleCommunityTemplate, tvCommunityMembersTemplate;
     private Context context;
 
     public CommunityListViewAdapter(ArrayList<Community> communities, Context context) {
@@ -77,7 +77,9 @@ public class CommunityListViewAdapter implements ListAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View communityTemplateView = inflater.inflate(R.layout.community_list_view_item_template, parent, false);
         tVTitleCommunityTemplate = communityTemplateView.findViewById(R.id.tvCommunityTitleTemplate);
+        tvCommunityMembersTemplate = communityTemplateView.findViewById(R.id.tvCommunityMembersTemplate);
         tVTitleCommunityTemplate.setText(communities.get(position).getName());
+        tvCommunityMembersTemplate.setText(communities.get(position).getUsers().size() + " " + communityTemplateView.getResources().getString(R.string.tabCommunityMembers));
         return communityTemplateView;
     }
 

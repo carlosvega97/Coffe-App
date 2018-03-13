@@ -91,54 +91,10 @@ public class HomeActivity extends AppCompatActivity
         mAcceptFavor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogAcceptFavorWithRefreshLayout();
+               Intent intent = new Intent(HomeActivity.this, CommunitiesActivity.class);
+               startActivity(intent);
             }
         });
-    }
-
-    private void dialogAcceptFavorWithRefreshLayout() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-
-        View v = inflater.inflate(R.layout.activity_list_view, null);
-        miListview=v.findViewById(R.id.listview44);
-
-        DataRef = FirebaseDatabase.getInstance().getReference("Communities");
-        DataRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Community comun = dataSnapshot.getValue(Community.class);
-                Community comun2 = new Community(comun.getName(), comun.getDescription(), comun.getAddress(), comun.getUsers());
-                arraycomunidades.add(comun.getName()+"\n"+comun.getAddress());
-
-                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_list_item_1, arraycomunidades);
-                miListview.setAdapter(arrayAdapter);
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        builder.setView(v);
-        builder.create().show();
     }
 
     private void dialogAddFavor(final Context context) {
@@ -215,7 +171,6 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_ftd) {
 
         } else if (id == R.id.nav_fr) {
             Intent intent = new Intent(HomeActivity.this, MyFavorsActivity.class);
@@ -226,7 +181,6 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_mp) {
             Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_sett) {
 
         } else if (id == R.id.nav_exit) {
             Intent intent = new Intent(HomeActivity.this, Splash_Screen.class);

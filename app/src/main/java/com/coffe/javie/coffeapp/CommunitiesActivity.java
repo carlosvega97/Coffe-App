@@ -1,6 +1,8 @@
 package com.coffe.javie.coffeapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +24,17 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CommunitiesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, GotUser {
 
     /**
@@ -38,7 +51,9 @@ public class CommunitiesActivity extends AppCompatActivity implements Navigation
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    FirebaseAuth fauth;
     private TextView tvNavDrawerUser, tvNavDrawerEmail;
+    private CircleImageView imageViewUser;
     private Database database = new Database();
 
     @Override
@@ -52,6 +67,7 @@ public class CommunitiesActivity extends AppCompatActivity implements Navigation
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
+        fauth = FirebaseAuth.getInstance();
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -80,6 +96,7 @@ public class CommunitiesActivity extends AppCompatActivity implements Navigation
         tvNavDrawerUser = findViewById(R.id.tvNavDrawerUser);
         tvNavDrawerEmail = findViewById(R.id.tvNavDrawerEmail);
         User user = database.getLoggedUser(this);
+        imageViewUser = findViewById(R.id.imageViewUser23);
         return true;
     }
 
@@ -99,6 +116,25 @@ public class CommunitiesActivity extends AppCompatActivity implements Navigation
     public void loggedUser(User user) {
         tvNavDrawerUser.setText(user.getPersonName());
         tvNavDrawerEmail.setText(user.getEmail());
+
+        try {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://coffe-36307.appspot.com").child("Users").child(fauth.getCurrentUser().getUid()).child("fotodeperfil");
+            final File localFile;
+
+            localFile = File.createTempFile("images", "jpg");
+
+            storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    imageViewUser.setImageBitmap(bitmap);
+
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -170,17 +206,15 @@ public class CommunitiesActivity extends AppCompatActivity implements Navigation
         if (id == R.id.nav_home) {
             Intent intent = new Intent(CommunitiesActivity.this, HomeActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_ftd) {
-
         } else if (id == R.id.nav_fr) {
-
+            Intent intent = new Intent(CommunitiesActivity.this, MyFavorsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_mc) {
             Intent intent = new Intent(CommunitiesActivity.this, CommunitiesActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_mp) {
             Intent intent = new Intent(CommunitiesActivity.this, PerfilActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_sett) {
 
         } else if (id == R.id.nav_exit) {
             Intent intent = new Intent(CommunitiesActivity.this, Splash_Screen.class);

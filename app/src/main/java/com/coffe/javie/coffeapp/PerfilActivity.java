@@ -19,12 +19,14 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,7 +57,7 @@ public class PerfilActivity extends AppCompatActivity
     TextView tvNavDrawerUser, tvNavDrawerEmail, tvPersonNameProfile, tvEmailProfile, tvPNumberProfile;
     private Database database = new Database();
     private User user;
-//***************************************************************************************************************
+    //***************************************************************************************************************
     private static String APP_DIRECTORY = "MyPictureApp/";
     private static String MEDIA_DIRECTORY = APP_DIRECTORY + "PictureApp";
 
@@ -73,8 +75,8 @@ public class PerfilActivity extends AppCompatActivity
     private StorageReference miStorage;
     private ProgressDialog mProgressDialog;
     private String mPath;
-
     FirebaseAuth mAuth;
+    private String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 //***************************************************************************************************************
 
@@ -102,9 +104,9 @@ public class PerfilActivity extends AppCompatActivity
         miStorage = FirebaseStorage.getInstance().getReference();
         mProgressDialog = new ProgressDialog(this);
 
-        if(myRequestStoragePermission()){
+        if (myRequestStoragePermission()) {
             mOptionButton.setEnabled(true);
-        }else{
+        } else {
             mOptionButton.setEnabled(false);
         }
     }
@@ -117,7 +119,7 @@ public class PerfilActivity extends AppCompatActivity
                 (checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED))
             return true;
 
-        if((shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) || (shouldShowRequestPermissionRationale(CAMERA))){
+        if ((shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) || (shouldShowRequestPermissionRationale(CAMERA))) {
             Snackbar.make(mRlView, "Los permisos son necesarios para poder usar la app",
                     Snackbar.LENGTH_INDEFINITE).setAction(android.R.string.ok, new View.OnClickListener() {
                 @TargetApi(Build.VERSION_CODES.M)
@@ -152,7 +154,7 @@ public class PerfilActivity extends AppCompatActivity
         user = database.getLoggedUser(this);
         mSetImage = findViewById(R.id.imageprofile);
         mImageView = findViewById(R.id.imageViewUser23);
-        getMenuInflater().inflate(R.menu.menu_derecho,menu);
+        getMenuInflater().inflate(R.menu.menu_derecho, menu);
         return true;
     }
 
@@ -164,8 +166,8 @@ public class PerfilActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.camara) {
             showOptions();
-        } else if(id == R.id.pencil){
-            //dialogo editar perfil
+        } else if (id == R.id.pencil) {
+            showEditProfileDialog();
         }
 
 
@@ -182,18 +184,16 @@ public class PerfilActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             Intent intent = new Intent(PerfilActivity.this, HomeActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_ftd) {
 
         } else if (id == R.id.nav_fr) {
-
+            Intent intent = new Intent(PerfilActivity.this, MyFavorsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_mc) {
             Intent intent = new Intent(PerfilActivity.this, CommunitiesActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_mp) {
             Intent intent = new Intent(PerfilActivity.this, PerfilActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_sett) {
-
         } else if (id == R.id.nav_exit) {
             Intent intent = new Intent(PerfilActivity.this, Splash_Screen.class);
             startActivity(intent);
@@ -237,22 +237,20 @@ public class PerfilActivity extends AppCompatActivity
 
     @SuppressLint("NewApi")
     public void showOptions() {
-        final CharSequence[] option = {"Camara", "Galeria", "Cancelar"};
+        final CharSequence[] option = {"Galeria", "Cancelar"};
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(PerfilActivity.this);
         builder.setTitle("Elige una opción");
         builder.setItems(option, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-              if (option[which]=="Camara") {
-                  openCamera();
-              }else if(option[which]=="Galeria"){
+                if (option[which] == "Galeria") {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(intent.createChooser(intent, "Selecciona la app de imagenes"), SELECT_PICTURE);
-              } else {
-                  dialog.dismiss();
-              }
+                } else {
+                    dialog.dismiss();
+                }
             }
         });
         builder.show();
@@ -264,27 +262,27 @@ public class PerfilActivity extends AppCompatActivity
 */
     }
 
-    private void openCamera() {
-        File file = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        boolean isDirectoryCreated = file.exists();
-
-        if (!isDirectoryCreated){
-            isDirectoryCreated = file.mkdirs();
-        }
-        if (isDirectoryCreated){
-            Long timestamp = System.currentTimeMillis() / 1000;
-            String imageName = timestamp.toString() + ".png";
-
-            mPath = Environment.getExternalStorageState() + File.separator + MEDIA_DIRECTORY
-                    + File.separator + imageName;
-
-            File newFile = new File(mPath);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(newFile));
-            startActivityForResult(intent, PHOTO_CODE);
-        }
-    }
+//    private void openCamera() {
+//        File file = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+//        boolean isDirectoryCreated = file.exists();
+//
+//        if (!isDirectoryCreated) {
+//            isDirectoryCreated = file.mkdirs();
+//        }
+//        if (isDirectoryCreated) {
+//            Long timestamp = System.currentTimeMillis() / 1000;
+//            String imageName = timestamp.toString() + ".png";
+//
+//            mPath = Environment.getExternalStorageState() + File.separator + MEDIA_DIRECTORY
+//                    + File.separator + imageName;
+//
+//            File newFile = new File(mPath);
+//
+//            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(newFile));
+//            startActivityForResult(intent, PHOTO_CODE);
+//        }
+//    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -303,8 +301,8 @@ public class PerfilActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK){
-            switch(requestCode){
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
                 case PHOTO_CODE:
                     MediaScannerConnection.scanFile(this,
                             new String[]{mPath}, null,
@@ -336,7 +334,7 @@ public class PerfilActivity extends AppCompatActivity
                             //******************************************+
 
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
-                            DatabaseReference currentUserDB =mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("photourl");
+                            DatabaseReference currentUserDB = mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("photourl");
                             currentUserDB.setValue(fotourl);
 
                             //DataRef.child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("urlfoto").setValue(downloadUrl.toString());
@@ -344,7 +342,7 @@ public class PerfilActivity extends AppCompatActivity
                             mSetImage.setImageURI(path);
                             mImageView.setImageURI(path);
 
-                            Toast.makeText(PerfilActivity.this, "Foto añadida con exito",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PerfilActivity.this, "Foto añadida con exito", Toast.LENGTH_SHORT).show();
                         }
                     });
             }
@@ -364,7 +362,8 @@ public class PerfilActivity extends AppCompatActivity
             showExplanation();
         }
     }
-         private void showExplanation(){
+
+    private void showExplanation() {
         AlertDialog.Builder builder = new AlertDialog.Builder(PerfilActivity.this);
         builder.setTitle("PERMISOS DENEGADOS");
         builder.setMessage("Para usar las funciones de la app necesitas aceptar los permisos");
@@ -386,6 +385,32 @@ public class PerfilActivity extends AppCompatActivity
             }
         });
         builder.show();
+    }
+
+    private void showEditProfileDialog() {
+        final View editProfileDialogView = LayoutInflater.from(PerfilActivity.this).inflate(R.layout.dialog_edit_profile_template, null);
+        AlertDialog dialog = new AlertDialog.Builder(PerfilActivity.this)
+                .setTitle(R.string.editProfileDialogTitle)
+                .setView(editProfileDialogView)
+                .setPositiveButton(R.string.acceptDialogProfile, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TextInputEditText tIETEditPersonName, tIETEditEmail, tIETEditPhoneNumber;
+                        tIETEditPersonName = editProfileDialogView.findViewById(R.id.tIETEditPersonName);
+                        tIETEditEmail = editProfileDialogView.findViewById(R.id.tIETEditEmail);
+                        tIETEditPhoneNumber = editProfileDialogView.findViewById(R.id.tIETEditPhoneNumber);
+                        String name = tIETEditPersonName.getText().toString();
+                        String email = tIETEditEmail.getText().toString();
+                        String phoneNumber = tIETEditPhoneNumber.getText().toString();
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userID);
+                        databaseReference.child("personName").setValue(name);
+                        databaseReference.child("email").setValue(email);
+                        databaseReference.child("pnumber").setValue(phoneNumber);
+                    }
+                })
+                .setNegativeButton(R.string.dismissDialogProfile, null)
+                .create();
+        dialog.show();
     }
 }
 

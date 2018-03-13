@@ -9,11 +9,6 @@
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/navDrawerHome" />
         <item
-            android:id="@+id/nav_ftd"
-            android:icon="@drawable/ic_list_black_24dp"
-            android:title="@string/navDrawerToDo"
-            tools:ignore="NewApi" />
-        <item
             android:id="@+id/nav_fr"
             android:icon="?android:attr/actionModePasteDrawable"
             android:title="@string/navDrawerRequested" />
@@ -29,10 +24,6 @@
                 android:id="@+id/nav_mp"
                 android:icon="@drawable/ic_account_circle_black_24dp"
                 android:title="@string/profile" />
-            <item
-                android:id="@+id/nav_sett"
-                android:icon="@drawable/ic_settings_black_24dp"
-                android:title="@string/settings" />
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@android:drawable/ic_lock_power_off"

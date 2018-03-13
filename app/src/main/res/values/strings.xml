@@ -86,6 +86,9 @@
     <string name="titleCA">My communities</string>
 
 
-    <!-- A -->
-
+    <!-- Activity Profile -->
+    <!-- Edit Profile Dialog -->
+    <string name="editProfileDialogTitle">Edit your Profile</string>
+    <string name="acceptDialogProfile">Edit</string>
+    <string name="dismissDialogProfile">Cancel</string>
 </resources>
