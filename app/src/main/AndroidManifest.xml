@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.javie.coffeapp"
+    package="com.coffe.javie.coffeapp"
     android:versionCode="1"
     android:versionName="1.0.0">
 
@@ -18,7 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.coffe.javie.coffeapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,36 +26,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
-            android:parentActivityName=".LoginActivity" />
+            android:name="com.coffe.javie.coffeapp.SignUpActivity"
+            android:parentActivityName="com.coffe.javie.coffeapp.LoginActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".LoginActivity" />
-        <activity android:name=".Splash_Screen" />
+            android:name="com.coffe.javie.coffeapp.LoginActivity"
+            android:parentActivityName="com.coffe.javie.coffeapp.LoginActivity" />
+        <activity android:name="com.coffe.javie.coffeapp.Splash_Screen" />
         <activity
-            android:name=".HomeActivity"
+            android:name="com.coffe.javie.coffeapp.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
-        <activity android:name=".PerfilActivity" />
-        <activity android:name=".ResetPassActivity" />
-        <activity android:name=".AddFavorCommunityActivity" />
-        <activity android:name=".CommunitiesActivity" />
-        <activity android:name=".ListViewActivity" />
+        <activity android:name="com.coffe.javie.coffeapp.PerfilActivity" />
+        <activity android:name="com.coffe.javie.coffeapp.ResetPassActivity" />
+        <activity android:name="com.coffe.javie.coffeapp.AddFavorCommunityActivity" />
+        <activity android:name="com.coffe.javie.coffeapp.CommunitiesActivity" />
+        <activity android:name="com.coffe.javie.coffeapp.ListViewActivity" />
         <activity
-            android:name=".SingleCommunityActivity"
+            android:name="com.coffe.javie.coffeapp.SingleCommunityActivity"
             android:label="@string/title_activity_single_community"
-            android:parentActivityName=".CommunitiesActivity"
+            android:parentActivityName="com.coffe.javie.coffeapp.CommunitiesActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.javie.coffeapp.CommunitiesActivity" />
+                android:value="com.coffe.javie.coffeapp.CommunitiesActivity" />
         </activity>
-        <activity android:name=".MyFavorsActivity"></activity>
+        <activity android:name="com.coffe.javie.coffeapp.MyFavorsActivity"></activity>
     </application>
 
 </manifest>

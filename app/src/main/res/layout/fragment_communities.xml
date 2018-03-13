@@ -4,7 +4,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.javie.coffeapp.CommunitiesActivity$PlaceholderFragment">
+    tools:context="com.coffe.javie.coffeapp.CommunitiesActivity$PlaceholderFragment">
 
     <CheckBox
         android:id="@+id/checkBox"
